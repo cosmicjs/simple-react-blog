@@ -2,7 +2,6 @@ import axios from 'axios'
 import _ from 'lodash'
 import Footer from './partials/footer'
 import Header from './partials/header'
-import Link from 'next/link'
 import helpers from '../helpers'
 import config from '../config'
 
