@@ -1,5 +1,5 @@
 # Simple React Blog
-![Simple React Blog](https://cosmicjs.com/uploads/2d54f8a0-af74-11e7-b864-313f959a776e-react-blog-screenshot.png)
+![Simple React Blog](https://cosmicjs.com/uploads/76875fe0-af74-11e7-b864-313f959a776e-react-blog-screenshot.png)
 ### [View Demo](https://cosmicjs.com/apps/simple-react-blog/demo)
 ### React + Next.js + GraphQL + Cosmic JS
 This blog uses Next.js to create a Universal React blog.  It connects to the Cosmic JS API via GraphQL.  Manage your content from your Cosmic JS Bucket Dashboard.  Simple.
