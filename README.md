@@ -7,7 +7,7 @@ This blog uses Next.js to create a Universal React blog.  It connects to the Cos
 ```
 git clone https://github.com/cosmicjs/simple-react-blog
 cd simple-react-blog
-yarn
+npm i
 ```
 #### Run in development
 ```
@@ -15,7 +15,7 @@ npm run dev
 ```
 #### Run in production
 ```
-COSMIC_BUCKET=your-bucket-slug yarn start
+COSMIC_BUCKET=your-bucket-slug npm start
 ```
 Open [http://localhost:3000](http://localhost:3000).
 
