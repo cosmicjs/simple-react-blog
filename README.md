@@ -20,7 +20,7 @@ COSMIC_BUCKET=your-bucket-slug yarn start
 Open [http://localhost:3000](http://localhost:3000).
 
 ### Cosmic JS
-You can easily manage the content in your Simple React Blog website on Cosmic JS.  Follow these steps:
+You can easily manage the content in your Simple React Blog website on Cosmic JS.  Cosmic JS makes a great [React CMS](https://cosmicjs.com).  Follow these steps:
 
 1. [Log in to Cosmic JS](https://cosmicjs.com).
 2. Create a Bucket.
