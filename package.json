@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js"
+  },
+  "dependencies": {
+    "axios": "^0.16.2",
+    "cosmicjs": "^2.4.20",
+    "express": "^4.16.2",
+    "lodash": "^4.17.4",
+    "next": "^4.0.3",
+    "next-routes": "^1.1.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  }
+}
