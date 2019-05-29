@@ -2,14 +2,16 @@ import axios from 'axios'
 import _ from 'lodash'
 import Footer from './partials/footer'
 import Header from './partials/header'
-import Link from 'next/link'
 import helpers from '../helpers'
 import config from '../config'
 
 export default class extends React.Component {
   static async getInitialProps({ query }) {
     const gql_query = `{
-      objects(bucket_slug: "${config.bucket.slug}") {
+      getObjects(bucket_slug: "${config.bucket.slug}", input: {
+        read_key: "${config.bucket.read_key}"
+      })
+      {
         _id
         type_slug
         slug
@@ -22,8 +24,8 @@ export default class extends React.Component {
     .then(function (response) {
       return {
         cosmic: {
-          posts: _.filter(response.data.data.objects, (post) => { return post.metadata && post.metadata.author && post.metadata.author.slug === query.slug }),
-          global: _.keyBy(_.filter(response.data.data.objects, { type_slug: 'globals' }), 'slug')
+          posts: _.filter(response.data.data.getObjects, (post) => { return post.metadata && post.metadata.author && post.metadata.author.slug === query.slug }),
+          global: _.keyBy(_.filter(response.data.data.getObjects, { type_slug: 'globals' }), 'slug')
         }
       }
     })

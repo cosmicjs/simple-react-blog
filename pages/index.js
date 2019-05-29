@@ -8,7 +8,10 @@ import config from '../config'
 export default class extends React.Component {
   static async getInitialProps({ req }) {
     const query = `{
-      objects(bucket_slug: "${config.bucket.slug}") {
+      getObjects(bucket_slug: "${config.bucket.slug}", input: {
+        read_key: "${config.bucket.read_key}"
+      })
+      {
         _id
         type_slug
         slug
@@ -21,8 +24,8 @@ export default class extends React.Component {
     .then(function (response) {
       return {
         cosmic: {
-          posts: _.filter(response.data.data.objects, { type_slug: 'posts' }),
-          global: _.keyBy(_.filter(response.data.data.objects, { type_slug: 'globals' }), 'slug')
+          posts: _.filter(response.data.data.getObjects, { type_slug: 'posts' }),
+          global: _.keyBy(_.filter(response.data.data.getObjects, { type_slug: 'globals' }), 'slug')
         }
       }
     })
