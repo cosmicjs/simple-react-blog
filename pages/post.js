@@ -7,7 +7,7 @@ import config from '../config'
 
 export default class extends React.Component {
   static async getInitialProps({ query }) {
-    const gql_query = `{
+    const globals_query = `{
       getObjects(bucket_slug: "${config.bucket.slug}", input: {
         read_key: "${config.bucket.read_key}"
       }) {
@@ -19,19 +19,42 @@ export default class extends React.Component {
         created_at
       }
     }`
-    return await axios.post(`https://graphql.cosmicjs.com/v1`, { query: gql_query })
+    const globals = await axios.post(`https://graphql.cosmicjs.com/v1`, { query: globals_query })
     .then(function (response) {
-      return {
-        cosmic: {
-          posts: _.filter(response.data.data.getObjects, { type_slug: 'posts' }),
-          global: _.keyBy(_.filter(response.data.data.getObjects, { type_slug: 'globals' }), 'slug'),
-          post: _.find(response.data.data.getObjects, { slug: query.slug }),
-        }
-      }
+      return _.keyBy(_.filter(response.data.data.getObjects, { type_slug: 'globals' }), 'slug')
     })
     .catch(function (error) {
       console.log(error)
     })
+    const post_query = `{
+      getObject(bucket_slug: "${config.bucket.slug}", input: {
+        read_key: "${config.bucket.read_key}",
+        slug: "${query.slug}",
+        revision: "${query.revision}"
+      }) {
+        type_slug
+        slug
+        title
+        content
+        metadata
+        created_at
+      }
+    }`
+    const post = await axios.post(`https://graphql.cosmicjs.com/v1`, { query: post_query })
+    .then(function (response) {
+      return response.data.data.getObject
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+    return await Promise.all([globals, post]).then(values => {
+      return {
+        cosmic: {
+          global: values[0],
+          post: values[1]
+        }
+      }
+    });
   }
   render() {
     if (!this.props.cosmic)
