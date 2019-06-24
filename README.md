@@ -1,4 +1,4 @@
-# Simple React Blog
+# Simple React Blog (now with revision support! See instructions below)
 ![Simple React Blog](https://cosmicjs.com/uploads/76875fe0-af74-11e7-b864-313f959a776e-react-blog-screenshot.png)
 ### [View Demo](https://cosmicjs.com/apps/simple-react-blog/demo)
 ### React + Next.js + GraphQL + Cosmic JS
@@ -27,3 +27,13 @@ You can easily manage the content in your Simple React Blog website on Cosmic JS
 3. Go to Your Bucket > Apps.
 4. Install the [Simple React Blog](https://cosmicjs.com/apps/simple-react-blog).
 5. Deploy your Blog to the Cosmic App Server at Your Bucket > Web Hosting.
+
+### Revisions
+Follow these steps to add revisions to your Bucket:
+1. [Log in to Cosmic JS](https://cosmicjs.com).
+2. Go to Your Simple Blog Bucket > Posts > Settings
+3. Scroll down to the Preview Link section and add the following link:
+```
+http://localhost:3000/[object_slug]?revision=[revision_id]
+```
+4. For production, replace `http://localhost:3000/` with your URL.
