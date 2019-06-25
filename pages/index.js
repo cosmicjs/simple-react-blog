@@ -41,6 +41,10 @@ export default class extends React.Component {
         <Header cosmic={ this.props.cosmic }/>
         <main className="container">
           {
+            !this.props.cosmic.posts &&
+            'You must add at least one Post to your Bucket'
+          }
+          {
             this.props.cosmic.posts &&
             this.props.cosmic.posts.map(post => {
               const friendly_date = helpers.friendlyDate(new Date(post.created_at))

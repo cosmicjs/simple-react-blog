@@ -15,12 +15,6 @@ export default class extends React.Component {
           <a href="/">{ this.props.cosmic.global.header.metadata.site_title }</a>
           <small className="site-title__tag">{ this.props.cosmic.global.header.metadata.site_tag }</small>
         </h1>
-        <div>
-          {
-            !this.props.cosmic.posts &&
-            'You must add at least one Post to your Bucket'
-          }
-        </div>
       </header>
     ]
   }
