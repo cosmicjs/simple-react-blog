@@ -32,7 +32,7 @@ You can easily manage the content in your Simple React Blog website on Cosmic JS
 4. Run locally to preview content edits, or deploy to your favorite hosting provider. Options below.
 
 ## Deploy
-A popular choice for the Next.js framework is [Now](https://zeit.co/). Follow the steps below from the root directiory.
+A popular choice for the Next.js framework web deployment is [Now](https://zeit.co/). Follow the steps below from the root directiory.
 ```
 npm i -g now
 now
