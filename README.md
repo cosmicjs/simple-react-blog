@@ -22,13 +22,21 @@ COSMIC_BUCKET=your-bucket-slug COSMIC_READ_KEY=your-bucket-read-key yarn run dev
 COSMIC_BUCKET=your-bucket-slug COSMIC_READ_KEY=your-bucket-read-key yarn start
 ```
 Open [http://localhost:3000](http://localhost:3000).
+
 ### Cosmic JS
 You can easily manage the content in your Simple React Blog website on Cosmic JS.  Cosmic JS makes a great [React CMS](https://cosmicjs.com).  Follow these steps:
 
 1. [Log in to Cosmic JS](https://cosmicjs.com).
 2. Create a Bucket.
 3. Install the [Simple React Blog](https://cosmicjs.com/apps/simple-react-blog).
-4. Deploy your Blog using your hosting provider of choice. We offer a [Deploy to Web Extension](https://www.cosmicjs.com/extensions/deploy-to-web) to make this easy.
+4. Run locally to preview content edits, or deploy to your favorite hosting provider. Options below.
+
+## Deploy
+A popular choice for the Next.js framework is [Now](https://zeit.co/). Follow the steps below from the root directiory.
+```
+npm i -g now
+now
+```
 
 ### Revision Preview
 Follow these steps to add revision preview to your Bucket:
