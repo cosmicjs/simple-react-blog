@@ -15,7 +15,7 @@ Get your Bucket slug and read key after [logging in to Cosmic JS](https://cosmic
 
 #### Run in development
 ```
-COSMIC_BUCKET=your-bucket-slug COSMIC_READ_KEY=your-bucket-read-key yarn run development
+COSMIC_BUCKET=your-bucket-slug COSMIC_READ_KEY=your-bucket-read-key yarn run dev
 ```
 #### Run in production
 ```
