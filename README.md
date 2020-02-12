@@ -10,6 +10,9 @@ git clone https://github.com/cosmicjs/simple-react-blog
 cd simple-react-blog
 npm i
 ```
+#### Config!
+Get your Bucket slug and read key after [logging in to Cosmic JS](https://cosmicjs.com/login) and going to <i>Bucket > Settings > API Keys</i>.
+
 #### Run in development
 ```
 COSMIC_BUCKET=your-bucket-slug COSMIC_READ_KEY=your-bucket-read-key yarn run development
