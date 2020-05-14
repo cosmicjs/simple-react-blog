@@ -2,8 +2,8 @@
 ![Simple React Blog](https://cosmicjs.com/uploads/76875fe0-af74-11e7-b864-313f959a776e-react-blog-screenshot.png)
 ### [View Demo](https://cosmicjs.com/apps/simple-react-blog/demo)
 ### Now includes revision preview support! See [instructions below ⬇️](#revision-preview)
-### React + Next.js + GraphQL + Cosmic JS
-This blog uses Next.js to create a Universal React blog.  It connects to the Cosmic JS API via GraphQL.  Manage your content from your Cosmic JS Bucket Dashboard.  Simple.
+### React + Next.js + GraphQL + Cosmic
+This blog uses Next.js to create a Universal React blog.  It connects to the Cosmic API via GraphQL.  Manage your content from your Cosmic Bucket Dashboard.  Simple.
 ### Getting Started
 ```
 git clone https://github.com/cosmicjs/simple-react-blog
@@ -11,7 +11,7 @@ cd simple-react-blog
 npm i
 ```
 #### Config!
-Get your Bucket slug and read key after [logging in to Cosmic JS](https://app.cosmicjs.com/login) and going to <i>Bucket > Settings > API Keys</i>.
+Get your Bucket slug and read key after [logging in to Cosmic](https://app.cosmicjs.com/login) and going to <i>Bucket > Settings > API Keys</i>.
 
 #### Run in development
 ```
@@ -23,10 +23,10 @@ COSMIC_BUCKET=your-bucket-slug COSMIC_READ_KEY=your-bucket-read-key yarn start
 ```
 Open [http://localhost:3000](http://localhost:3000).
 
-### Cosmic JS
-You can easily manage the content in your Simple React Blog website on Cosmic JS.  Cosmic JS makes a great [React CMS](https://cosmicjs.com).  Follow these steps:
+### Cosmic
+You can easily manage the content in your Simple React Blog website on Cosmic.  Cosmic makes a great [React CMS](https://cosmicjs.com).  Follow these steps:
 
-1. [Log in to Cosmic JS](https://cosmicjs.com).
+1. [Log in to Cosmic](https://cosmicjs.com).
 2. Create a Bucket.
 3. Install the [Simple React Blog](https://cosmicjs.com/apps/simple-react-blog).
 4. Run locally to preview content edits, or deploy to your favorite hosting provider. Options below.
@@ -40,7 +40,7 @@ now
 
 ### Revision Preview
 Follow these steps to add revision preview to your Bucket:
-1. [Log in to Cosmic JS](https://cosmicjs.com).
+1. [Log in to Cosmic](https://cosmicjs.com).
 2. Go to Your Simple Blog Bucket > Posts > Settings
 3. Scroll down to the Preview Link section and add the following link:
 ```
