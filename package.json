@@ -5,7 +5,7 @@
     "start": "next build; NODE_ENV=production node server.js"
   },
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "express": "^4.16.2",
     "lodash": "^4.17.4",
     "next": "^4.0.3",
