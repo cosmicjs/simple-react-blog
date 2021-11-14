@@ -1,47 +1,54 @@
 import axios from 'axios'
 import _ from 'lodash'
-import Footer from './partials/footer'
-import Header from './partials/header'
-import helpers from '../helpers'
-import config from '../config'
+import Footer from '../../components/partials/footer'
+import Header from '../../components/partials/header'
+import helpers from '../../helpers'
+import config from '../../config'
+import React from 'react';
+import { withRouter } from 'next/router';
 
-export default class extends React.Component {
+export default withRouter(class extends React.Component {
   static async getInitialProps({ query }) {
     const globals_query = `{
-      getObjects(bucket_slug: "${config.bucket.slug}", input: {
+      getObjects(bucket_slug: "${config.bucket.slug}",
         read_key: "${config.bucket.read_key}"
-      }) {
-        type_slug
-        slug
-        title
-        content
-        metadata
-        created_at
+      ) {
+        objects {
+          id
+          type
+          slug
+          title
+          content
+          metadata
+          created_at
+        }
       }
     }`
-    const globals = await axios.post(`https://graphql.cosmicjs.com/v1`, { query: globals_query })
+    const globals = await axios.post(`https://graphql.cosmicjs.com/v3`, { query: globals_query })
     .then(function (response) {
-      return _.keyBy(_.filter(response.data.data.getObjects, { type_slug: 'globals' }), 'slug')
+      return _.keyBy(_.filter(response.data.data.getObjects.objects, { type: 'globals' }), 'slug')
     })
     .catch(function (error) {
       console.log(error)
     })
     const post_query = `{
-      getObject(bucket_slug: "${config.bucket.slug}", input: {
-        read_key: "${config.bucket.read_key}",
-        slug: "${query.slug}",
+      getObject(bucket_slug: "${config.bucket.slug}", 
+      read_key: "${config.bucket.read_key}",
+      object_id:"${query.slug}"
+      input: {
         revision: "${query.revision}"
       }) {
-        type_slug
-        slug
-        title
-        content
-        metadata
-        created_at
+          id
+          type
+          slug
+          title
+          content
+          metadata
+          created_at
       }
     }`
-    const post = await axios.post(`https://graphql.cosmicjs.com/v1`, { query: post_query })
-    .then(function (response) {
+    const post = await axios.post(`https://graphql.cosmicjs.com/v3`, { query: post_query })
+    .then(function (response) {      
       return response.data.data.getObject
     })
     .catch(function (error) {
@@ -88,7 +95,7 @@ export default class extends React.Component {
               <div>
                 <div className="blog__author">
                   <a href={`/author/${this.props.cosmic.post.metadata.author.slug}`}>
-                    <div className="blog__author-image" style={{ backgroundImage: `url(${this.props.cosmic.post.metadata.author.metafields[0].imgix_url}?w=100)`}}></div>
+                    <div className="blog__author-image" style={{ backgroundImage: `url(${this.props.cosmic.post.metadata.author.metadata.image.imgix_url}?w=100)`}}></div>
                   </a>
                   <div className="blog__author-title">by <a href={`/author/${this.props.cosmic.post.metadata.author.slug}`}>{this.props.cosmic.post.metadata.author.title}</a> on {this.props.cosmic.post.friendly_date}</div>
                   <div className="clearfix"></div>
@@ -102,4 +109,4 @@ export default class extends React.Component {
       </div>
     )
   }
-}
+})
