@@ -1,44 +1,45 @@
 # Simple React Blog
 ![Simple React Blog](https://cosmicjs.com/uploads/76875fe0-af74-11e7-b864-313f959a776e-react-blog-screenshot.png)
+
 ### [View Demo](https://cosmicjs.com/apps/simple-react-blog/demo)
-### Now includes revision preview support! See [instructions below ⬇️](#revision-preview)
-### React + Next.js + GraphQL + Cosmic
-This blog uses Next.js to create a Universal React blog.  It connects to the Cosmic API via GraphQL.  Manage your content from your Cosmic Bucket Dashboard.  Simple.
-### Getting Started
+
+### React + Next.js + Cosmic GraphQL
+This blog uses Next.js to create a React blog.  It connects to the Cosmic API via GraphQL.  Manage your content from your Cosmic Bucket Dashboard.  Simple.
+
+## Set Up
 ```
 git clone https://github.com/cosmicjs/simple-react-blog
 cd simple-react-blog
-npm i
+yarn
 ```
-#### Config!
-Get your Bucket slug and read key after [logging in to Cosmic](https://app.cosmicjs.com/login) and going to <i>Bucket > Settings > API Keys</i>.
+#### Environment Variables
+
+Refer to `.env.example` which is an example file for you to know what key-value pairs are needed for the API access.
+
+Then, create an `.env` file and copy the key-value pairs to it and then change the values to the API access keys found in your Cosmic dashboard. To do this, run:
+```
+cp .env.example .env
+```
+
+#### Get API Access Keys
+[Log in to Cosmic](https://app.cosmicjs.com/login) and get your API access keys located at <em>Bucket Settings &gt; API Access</em>.
+
 
 #### Run in development
 ```
-COSMIC_BUCKET=your-bucket-slug COSMIC_READ_KEY=your-bucket-read-key yarn run dev
-```
-#### Run in production
-```
-COSMIC_BUCKET=your-bucket-slug COSMIC_READ_KEY=your-bucket-read-key yarn start
+yarn run dev
 ```
 Open [http://localhost:3000](http://localhost:3000).
 
-### Cosmic
-You can easily manage the content in your Simple React Blog website on Cosmic.  Cosmic makes a great [React CMS](https://www.cosmicjs.com/knowledge-base/react-cms).  Follow these steps:
+## Deploy to Vercel
 
-1. [Log in to Cosmic](https://app.cosmicjs.com/login).
-2. Create a Bucket.
-3. Install the [Simple React Blog](https://www.cosmicjs.com/apps/simple-react-blog).
-4. Run locally to preview content edits, or deploy to your favorite hosting provider. Options below.
+<p>Use the following button to deploy to <a href="https://vercel.com/" rel="noopener noreferrer" target="_blank">Vercel</a>. You will need to add API accesss keys as environment variables. Find these in <em>Bucket Settings &gt; API Access</em>.</p>
+<p>
+<a href="https://vercel.com/import/git?c=1&s=https://github.com/cosmicjs/simple-react-blog&env=COSMIC_BUCKET_SLUG,COSMIC_READ_KEY&envDescription=Required%20to%20connect%20the%20app%20with%20Cosmic&envLink=https://vercel.link/cms-cosmic-env" rel="noopener noreferrer" target="_blank"><img src="https://cdn.cosmicjs.com/d3f0d5e0-c064-11ea-9a05-6f8a16b0b14c-deploy-to-vercel.svg" style="width: 100px;" class="fr-fic fr-dib fr-fil"></a>
+</p>
 
-## Deploy
-A popular choice for the Next.js framework web deployment is [Now](https://vercel.com). Follow the steps below from the root directiory.
-```
-npm i -g now
-now
-```
 
-### Revision Preview
+## Revision Preview
 Follow these steps to add revision preview to your Bucket:
 1. [Log in to Cosmic](https://www.cosmicjs.com).
 2. Go to Your Simple Blog Bucket > Posts > Settings
