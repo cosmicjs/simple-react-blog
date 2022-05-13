@@ -10,7 +10,8 @@ import { withRouter } from 'next/router';
 export default withRouter(class extends React.Component {
   static async getInitialProps({ query }) {
     const globals_query = `{
-      getObjects(bucket_slug: "${config.bucket.slug}",
+      getObjects(
+        bucket_slug: "${config.bucket.slug}",
         read_key: "${config.bucket.read_key}"
       ) {
         objects {
@@ -32,12 +33,17 @@ export default withRouter(class extends React.Component {
       console.log(error)
     })
     const post_query = `{
-      getObject(bucket_slug: "${config.bucket.slug}", 
-      read_key: "${config.bucket.read_key}",
-      object_id:"${query.slug}"
-      input: {
-        revision: "${query.revision}"
-      }) {
+      getObjects(
+        bucket_slug: "${config.bucket.slug}",
+        read_key: "${config.bucket.read_key}"
+        input: {
+          query: {
+            slug: "${query.slug}"
+            revision: "${query.revision}"
+          }
+        }
+      ) {
+         objects {
           id
           type
           slug
@@ -45,15 +51,30 @@ export default withRouter(class extends React.Component {
           content
           metadata
           created_at
+        }
       }
     }`
-    const post = await axios.post(`https://graphql.cosmicjs.com/v3`, { query: post_query })
-    .then(function (response) {      
-      return response.data.data.getObject
+    let post = await axios.post(`https://graphql.cosmicjs.com/v3`, { query: post_query })
+    .then(function (response) {    
+      return response.data.data.getObjects.objects[0]
     })
     .catch(function (error) {
       console.log(error)
     })
+    // Fetch Revision
+    if (query.revision) {
+      // Use REST API. No revision method available in GraphQL YET! See https://docs.cosmicjs.com/api-reference/object-revisions#get-object-revision
+      const endpoint = `https://api.cosmicjs.com/v2/buckets/${config.bucket.slug}/objects/${post.id}/revisions/${query.revision}?read_key=${config.bucket.read_key}&props=id,type,slug,title,content,metadata,created_at`;
+      const revision = await axios(endpoint)
+      .then(function (response) {    
+        return response.data.revision
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+      // Set post data
+      post = revision;
+    }
     return await Promise.all([globals, post]).then(values => {
       return {
         cosmic: {

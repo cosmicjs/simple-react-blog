@@ -8,8 +8,9 @@ import React from 'react';
 export default class extends React.Component {
   static async getInitialProps({ query }) {
     const gql_query = `{
-      getObjects(bucket_slug: "${config.bucket.slug}",
-      read_key: "${config.bucket.read_key}"
+      getObjects(
+        bucket_slug: "${config.bucket.slug}",
+        read_key: "${config.bucket.read_key}"
       )
       {
         objects {
@@ -48,14 +49,14 @@ export default class extends React.Component {
               const friendly_date = helpers.friendlyDate(new Date(post.created_at))
               post.friendly_date = friendly_date.month + ' ' + friendly_date.date
               return (
-                 <div className="card" data-href={`/posts/${post.id}`} key={post.id}>
+                 <div className="card" data-href={`/posts/${post.slug}`} key={post.slug}>
                   {
                     post.metadata.hero.imgix_url &&
-                    <a href={`/posts/${post.id}`} className="blog-post-hero blog-post-hero--short" style={{ backgroundImage: `url(${post.metadata.hero.imgix_url})`}}></a>
+                    <a href={`/posts/${post.slug}`} className="blog-post-hero blog-post-hero--short" style={{ backgroundImage: `url(${post.metadata.hero.imgix_url})`}}></a>
                   }
                   <div className="card-padding">
                     <h2 className="blog__title blog__title--small">
-                      <a href={`/posts/${post.id}`}>{post.title}</a>
+                      <a href={`/posts/${post.slug}`}>{post.title}</a>
                     </h2>
                     <div className="blog__author">
                       <a href={`/author/${post.metadata.author.slug}`}>
@@ -66,7 +67,7 @@ export default class extends React.Component {
                     </div>
                     <div className="blog__teaser droid" dangerouslySetInnerHTML={{__html: post.metadata.teaser}}></div>
                     <div className="blog__read-more">
-                      <a href={`/posts/${post.id}`}>Read more...</a>
+                      <a href={`/posts/${post.slug}`}>Read more...</a>
                     </div>
                   </div>
                 </div>  
