@@ -6,7 +6,9 @@
 ### React + Next.js + Cosmic GraphQL
 This blog uses Next.js to create a React blog.  It connects to the Cosmic API via GraphQL.  Manage your content from your Cosmic Bucket Dashboard.  Simple.
 
-## Set Up
+## Getting Started
+1. Log in to Cosmic and install the [Simple React Blog template](https://www.cosmicjs.com/apps/simple-react-blog)
+2. Run the folloing commands to install the code locally
 ```
 git clone https://github.com/cosmicjs/simple-react-blog
 cd simple-react-blog
@@ -14,15 +16,11 @@ yarn
 ```
 #### Environment Variables
 
-Refer to `.env.example` which is an example file for you to know what key-value pairs are needed for the API access.
-
-Then, create an `.env` file and copy the key-value pairs to it and then change the values to the API access keys found in your Cosmic dashboard. To do this, run:
+1. Create an `.env` file to gain API access to your Cosmic Bucket. To do this, run:
 ```
 cp .env.example .env
 ```
-
-#### Get API Access Keys
-[Log in to Cosmic](https://app.cosmicjs.com/login) and get your API access keys located at <em>Bucket Settings &gt; API Access</em>.
+2. Find your API access keys at <em>Bucket Settings &gt; API Access</em> and add them to the `.env` file.
 
 
 #### Run in development
@@ -42,7 +40,7 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Revision Preview
 Follow these steps to add revision preview to your Bucket:
 1. [Log in to Cosmic](https://www.cosmicjs.com).
-2. Go to Your Simple Blog Bucket > Posts > Settings
+2. Go to <em>Your Bucket > Posts > Object Type Settings</em>.
 3. Scroll down to the Preview Link section and add the following link:
 ```
 http://localhost:3000/[object_slug]?revision=[revision_id]
