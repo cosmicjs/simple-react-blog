@@ -12,7 +12,6 @@ This blog uses Next.js to create a React blog.  It connects to the Cosmic API vi
 ```
 git clone https://github.com/cosmicjs/simple-react-blog
 cd simple-react-blog
-yarn
 ```
 #### Environment Variables
 
@@ -20,12 +19,17 @@ yarn
 ```
 cp .env.example .env
 ```
-2. Find your API access keys at <em>Bucket Settings &gt; API Access</em> and add them to the `.env` file.
-
+2. Find your API access keys at <em>Bucket Settings &gt; API Access</em> and add them to the `.env` file. It should look something like this:
+```
+COSMIC_BUCKET_SLUG=your-bucket-slug
+COSMIC_READ_KEY=your-bucket-read-key
+```
 
 #### Run in development
+Install all dependencies and run in development mode.
 ```
-yarn run dev
+yarn
+yarn dev
 ```
 Open [http://localhost:3000](http://localhost:3000).
 
