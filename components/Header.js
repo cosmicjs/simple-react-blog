@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import React from 'react';
+import Link from 'next/link';
 export default class extends React.Component {
   render() {
     return [
@@ -12,7 +13,9 @@ export default class extends React.Component {
       </Head>,
       <header className="header" key="headerelement">
         <h1 className="site-title">
-          <a href="/">{ this.props.cosmic.global.header.metadata.site_title }</a>
+          <Link href="/">
+            <a>{ this.props.cosmic.global.header.metadata.site_title }</a>
+          </Link>
           <small className="site-title__tag">{ this.props.cosmic.global.header.metadata.site_tag }</small>
         </h1>
       </header>

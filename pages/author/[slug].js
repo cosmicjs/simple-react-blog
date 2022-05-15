@@ -1,82 +1,136 @@
 import axios from 'axios'
 import _ from 'lodash'
-import Footer from '../../components/partials/footer'
-import Header from '../../components/partials/header'
+import Footer from '../../components/Footer'
+import Header from '../../components/Header'
+import PostCard from '../../components/PostCard'
 import helpers from '../../helpers'
 import config from '../../config'
 import React from 'react';
-export default class extends React.Component {
-  static async getInitialProps({ query }) {
-    const gql_query = `{
-      getObjects(
-        bucket_slug: "${config.bucket.slug}",
-        read_key: "${config.bucket.read_key}"
-      )
-      {
-        objects {
-          id
-          type
-          slug
-          title
-          metadata
-          created_at
+
+function AuthorPage({ cosmic }) {
+  if (!cosmic)
+    return <div>Loading...</div>
+  return (
+    <div>
+      <Header cosmic={ cosmic }/>
+      <main className="container">
+        {
+          !cosmic.posts &&
+          'You must add at least one Post to your Bucket'
         }
+        {
+          cosmic.posts &&
+          cosmic.posts.map(post => {
+            
+            const friendly_date = helpers.friendlyDate(new Date(post.created_at))
+            post.friendly_date = friendly_date.month + ' ' + friendly_date.date
+        
+            return <PostCard post={post} />
+          })
+        }
+      </main>
+      <Footer />
+    </div>
+  )
+}
+// Get Global and Posts data
+export async function getStaticProps({ params }) {
+  const author_id = await getAuthorIdFromURL(params.slug)
+  const query = `{
+    getObjects(
+      bucket_slug: "${config.bucket.slug}",
+      read_key: "${config.bucket.read_key}"
+    )
+    {
+      objects {
+        id
+        type
+        slug
+        title
+        metadata
+        created_at
       }
-    }`
-    return await axios.post(`https://graphql.cosmicjs.com/v3`, { query: gql_query })
-    .then(function (response) {
-      return {
+    }
+  }`
+  return await axios.post(`https://graphql.cosmicjs.com/v3`, { query })
+  .then(function (response) {
+    const posts = _.filter(response.data.data.getObjects.objects, (post) => { console.log(post.metadata); return post.metadata && post.metadata.author && post.metadata.author.id === author_id });
+    return {
+      props: {
         cosmic: {
-          posts: _.filter(response.data.data.getObjects.objects, (post) => { return post.metadata && post.metadata.author && post.metadata.author.slug === query.slug }),
+          posts,
           global: _.keyBy(_.filter(response.data.data.getObjects.objects, { type: 'globals' }), 'slug')
         }
       }
-    })
-    .catch(function (error) {
-      console.log(error)
-    })
-  }
-  render() {
-    if (!this.props.cosmic)
-      return <div>Loading...</div>
-    return (
-      <div>
-        <Header cosmic={ this.props.cosmic }/>
-        <main className="container">
-          {
-            this.props.cosmic.posts &&
-            this.props.cosmic.posts.map(post => {
-              const friendly_date = helpers.friendlyDate(new Date(post.created_at))
-              post.friendly_date = friendly_date.month + ' ' + friendly_date.date
-              return (
-                 <div className="card" data-href={`/posts/${post.slug}`} key={post.slug}>
-                  {
-                    post.metadata.hero.imgix_url &&
-                    <a href={`/posts/${post.slug}`} className="blog-post-hero blog-post-hero--short" style={{ backgroundImage: `url(${post.metadata.hero.imgix_url})`}}></a>
-                  }
-                  <div className="card-padding">
-                    <h2 className="blog__title blog__title--small">
-                      <a href={`/posts/${post.slug}`}>{post.title}</a>
-                    </h2>
-                    <div className="blog__author">
-                      <a href={`/author/${post.metadata.author.slug}`}>
-                        <div className="blog__author-image" style={{ backgroundImage: `url(${post.metadata.author.metadata.image.imgix_url}?w=100)`}}></div>
-                      </a>
-                      <div className="blog__author-title">by <a href={`/author/${post.metadata.author.slug}`}>{post.metadata.author.title}</a> on {post.friendly_date}</div>
-                      <div className="clearfix"></div>
-                    </div>
-                    <div className="blog__teaser droid" dangerouslySetInnerHTML={{__html: post.metadata.teaser}}></div>
-                    <div className="blog__read-more">
-                      <a href={`/posts/${post.slug}`}>Read more...</a>
-                    </div>
-                  </div>
-                </div>  
-              )
-            })
-          }
-        </main>
-        <Footer />
-      </div>
-    )
+    }
+  })
+  .catch(function (error) {
+    return console.log(error)
+  })
+}
+// Get Author from URL slug
+export async function getAuthorIdFromURL(slug) {
+  const author_query = `{
+     getObjects(
+       bucket_slug: "${config.bucket.slug}",
+       read_key: "${config.bucket.read_key}"
+       input: {
+         query: {
+           slug: "${slug}"
+         }
+         props: "id"
+       }
+     ) {
+        objects {
+          id
+       }
+     }
+   }`
+   const author = await axios.post(`https://graphql.cosmicjs.com/v3`, { query: author_query })
+   .then(function (response) {    
+     return response.data.data.getObjects.objects[0]
+   })
+   .catch(function (error) {
+     console.log(error)
+   })
+   return author.id
+ }
+
+ // Get All Possible Slugs
+export async function getAllDataWithSlug() {
+  const posts_query = `{
+     getObjects(
+       bucket_slug: "${config.bucket.slug}",
+       read_key: "${config.bucket.read_key}"
+       input: {
+         query: {
+           type: "posts"
+         }
+         props: "slug"
+       }
+     ) {
+        objects {
+         slug
+       }
+     }
+   }`
+   let posts = await axios.post(`https://graphql.cosmicjs.com/v3`, { query: posts_query })
+   .then(function (response) {    
+     return response.data.data.getObjects.objects
+   })
+   .catch(function (error) {
+     console.log(error)
+   })
+   return posts
+ }
+
+ // Get All Static Paths
+ export async function getStaticPaths() {
+  const dataWithSlug = (await getAllDataWithSlug()) || [];
+  return {
+    paths: dataWithSlug.map((post) => `/author/${post.slug}`),
+    fallback: true,
   }
 }
+
+export default AuthorPage
