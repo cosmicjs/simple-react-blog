@@ -47,7 +47,7 @@ Follow these steps to add revision preview to your Bucket:
 2. Go to <em>Your Bucket > Posts > Object Type Settings</em>.
 3. Scroll down to the Preview Link section and add the following link:
 ```
-http://localhost:3000/[object_slug]?revision=[revision_id]
+http://localhost:3000/posts/[object_slug]?revision=[revision_id]
 ```
 4. For production, replace `http://localhost:3000` with your URL.
 Now when you "Save as Draft" on any Post, you can preview your changes by clicking the "Preview" link.
