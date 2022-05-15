@@ -5,9 +5,9 @@ import Header from '../../components/partials/header'
 import helpers from '../../helpers'
 import config from '../../config'
 import React from 'react';
-import { withRouter } from 'next/router';
+import Link from 'next/link';
 
-export default withRouter(class extends React.Component {
+export default class extends React.Component {
   static async getInitialProps({ query }) {
     const globals_query = `{
       getObjects(
@@ -108,17 +108,19 @@ export default withRouter(class extends React.Component {
               }
               {
                 this.props.cosmic.post &&
-                <a href={`/${this.props.cosmic.post.slug}`}>{this.props.cosmic.post.title}</a>
+                <Link href={`/posts/${this.props.cosmic.post.slug}`}><a>{this.props.cosmic.post.title}</a></Link>
               }
             </h2>
             {
               this.props.cosmic.post &&
               <div>
                 <div className="blog__author">
-                  <a href={`/author/${this.props.cosmic.post.metadata.author.slug}`}>
-                    <div className="blog__author-image" style={{ backgroundImage: `url(${this.props.cosmic.post.metadata.author.metadata.image.imgix_url}?w=100)`}}></div>
-                  </a>
-                  <div className="blog__author-title">by <a href={`/author/${this.props.cosmic.post.metadata.author.slug}`}>{this.props.cosmic.post.metadata.author.title}</a> on {this.props.cosmic.post.friendly_date}</div>
+                  <Link href={`/author/${this.props.cosmic.post.metadata.author.slug}`}>
+                    <a>
+                      <div className="blog__author-image" style={{ backgroundImage: `url(${this.props.cosmic.post.metadata.author.metadata.image.imgix_url}?w=100)`}}></div>
+                    </a>
+                  </Link>
+                  <div className="blog__author-title">by <Link href={`/author/${this.props.cosmic.post.metadata.author.slug}`}><a>{this.props.cosmic.post.metadata.author.title}</a></Link> on {this.props.cosmic.post.friendly_date}</div>
                   <div className="clearfix"></div>
                 </div>
                 <div className="blog__teaser droid" dangerouslySetInnerHTML={{__html: this.props.cosmic.post.content}}></div>
@@ -130,4 +132,4 @@ export default withRouter(class extends React.Component {
       </div>
     )
   }
-})
+}

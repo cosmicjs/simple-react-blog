@@ -1,16 +1,17 @@
 {
+  "name": "simple-react-blog-updated",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "dev": "node server.js",
+    "dev": "next dev",
     "build": "next build",
-    "start": "next build; NODE_ENV=production node server.js"
+    "start": "next start"
   },
   "dependencies": {
-    "axios": "^0.24.0",
-    "express": "^4.17.1",
+    "axios": "^0.27.2",
     "lodash": "^4.17.21",
-    "next": "^12.1.0",
-    "next-routes": "^1.4.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "next": "12.1.6",
+    "react": "18.1.0",
+    "react-dom": "18.1.0"
   }
 }
