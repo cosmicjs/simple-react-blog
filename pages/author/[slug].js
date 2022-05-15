@@ -35,7 +35,6 @@ function AuthorPage({ cosmic }) {
 }
 // Get Global and Posts data
 export async function getStaticProps({ params }) {
-  const author_id = await getAuthorIdFromURL(params.slug)
   const query = `{
     getObjects(
       bucket_slug: "${config.bucket.slug}",
@@ -54,7 +53,7 @@ export async function getStaticProps({ params }) {
   }`
   return await axios.post(`https://graphql.cosmicjs.com/v3`, { query })
   .then(function (response) {
-    const posts = _.filter(response.data.data.getObjects.objects, (post) => { console.log(post.metadata); return post.metadata && post.metadata.author && post.metadata.author.id === author_id });
+    const posts = _.filter(response.data.data.getObjects.objects, (post) => { return post.metadata && post.metadata.author && post.metadata.author.slug === params.slug });
     return {
       props: {
         cosmic: {
@@ -68,33 +67,6 @@ export async function getStaticProps({ params }) {
     return console.log(error)
   })
 }
-// Get Author from URL slug
-export async function getAuthorIdFromURL(slug) {
-  const author_query = `{
-     getObjects(
-       bucket_slug: "${config.bucket.slug}",
-       read_key: "${config.bucket.read_key}"
-       input: {
-         query: {
-           slug: "${slug}"
-         }
-         props: "id"
-       }
-     ) {
-        objects {
-          id
-       }
-     }
-   }`
-   const author = await axios.post(`https://graphql.cosmicjs.com/v3`, { query: author_query })
-   .then(function (response) {    
-     return response.data.data.getObjects.objects[0]
-   })
-   .catch(function (error) {
-     console.log(error)
-   })
-   return author.id
- }
 
  // Get All Possible Slugs
 export async function getAllDataWithSlug() {
