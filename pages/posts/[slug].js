@@ -7,6 +7,9 @@ import config from '../../config'
 import React from 'react';
 import Link from 'next/link';
 import ErrorPage from 'next/error'
+import { useRouter } from 'next/router'
+import useSWR from 'swr'
+const fetcher = (url) => fetch(url).then((res) => res.json());
 
 function Post({ cosmic }) {
   if (!cosmic)
@@ -15,6 +18,18 @@ function Post({ cosmic }) {
   if (cosmic.post) {
     friendly_date = helpers.friendlyDate(new Date(cosmic.post.created_at))
     cosmic.post.friendly_date = friendly_date.month + ' ' + friendly_date.date
+  }
+  const router = useRouter()
+  const { revision } = router.query
+  if(revision) {
+    // Get revision
+    const { data } = useSWR(
+      `https://api.cosmicjs.com/v2/buckets/${config.bucket.slug}/objects/${cosmic.post.id}/revisions/${revision}?read_key=${config.bucket.read_key}&props=id,type,slug,title,content,metadata,created_at`,
+      fetcher
+    );
+    if (data) {
+      cosmic.post = data.revision;
+    }
   }
   return (
     <div>
@@ -56,7 +71,6 @@ function Post({ cosmic }) {
     </div>
   )
 }
-
 export async function getStaticProps({ params }) {
   const globals_query = `{
     getObjects(
@@ -109,20 +123,6 @@ export async function getStaticProps({ params }) {
   .catch(function (error) {
     console.log(error)
   })
-  // Fetch Revision
-  if (params.revision) {
-    // Use REST API. No revision method available in GraphQL YET! See https://docs.cosmicjs.com/api-reference/object-revisions#get-object-revision
-    const endpoint = `https://api.cosmicjs.com/v2/buckets/${config.bucket.slug}/objects/${post.id}/revisions/${query.revision}?read_key=${config.bucket.read_key}&props=id,type,slug,title,content,metadata,created_at`;
-    const revision = await axios(endpoint)
-    .then(function (response) {    
-      return response.data.revision
-    })
-    .catch(function (error) {
-      console.log(error)
-    })
-    // Set post data
-    post = revision;
-  }
   return await Promise.all([globals, post]).then(values => {
     return {
       props: {
