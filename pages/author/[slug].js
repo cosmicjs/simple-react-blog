@@ -5,13 +5,17 @@ import Header from '../../components/Header'
 import PostCard from '../../components/PostCard'
 import helpers from '../../helpers'
 import config from '../../config'
-import React from 'react';
+import React from 'react'
+import Head from 'next/head'
 
 function AuthorPage({ cosmic }) {
   if (!cosmic)
     return <div>Loading...</div>
   return (
     <div>
+      <Head>
+        <title key="sitetitle">Author Posts</title>
+      </Head>
       <Header cosmic={ cosmic }/>
       <main className="container">
         {
@@ -25,7 +29,7 @@ function AuthorPage({ cosmic }) {
             const friendly_date = helpers.friendlyDate(new Date(post.created_at))
             post.friendly_date = friendly_date.month + ' ' + friendly_date.date
         
-            return <PostCard post={post} />
+            return <div key={post.id}><PostCard post={post} /></div>
           })
         }
       </main>

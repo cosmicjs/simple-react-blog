@@ -1,6 +1,6 @@
 import Link from 'next/link';
 export default function PostCard({ post }) {
-  return <div className="card" key={post.id}>
+  return <div className="card">
     {
       post.metadata.hero.imgix_url &&
       <Link href={`/posts/${post.slug}`}>

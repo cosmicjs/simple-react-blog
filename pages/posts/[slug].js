@@ -4,11 +4,13 @@ import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 import helpers from '../../helpers'
 import config from '../../config'
-import React from 'react';
-import Link from 'next/link';
+import React from 'react'
+import Link from 'next/link'
 import ErrorPage from 'next/error'
 import { useRouter } from 'next/router'
 import useSWR from 'swr'
+import Head from 'next/head'
+
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 function Post({ cosmic }) {
@@ -33,6 +35,9 @@ function Post({ cosmic }) {
   }
   return (
     <div>
+      <Head>
+        <title key="sitetitle">{ cosmic.post.title }</title>
+      </Head>
       <Header cosmic={ cosmic }/>
       {
         cosmic.post && cosmic.post.metadata.hero.imgix_url &&
