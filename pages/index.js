@@ -6,12 +6,16 @@ import PostCard from '../components/PostCard'
 import helpers from '../helpers'
 import config from '../config'
 import React from 'react';
+import Head from 'next/head'
 
 function Home({ cosmic }) {
   if (!cosmic)
     return <div>Loading...</div>
   return (
     <div>
+      <Head>
+        <title key="sitetitle">{ cosmic.post ? cosmic.post.title + ' |' : '' } Simple React Blog</title>
+      </Head>
       <Header cosmic={ cosmic }/>
       <main className="container">
         {
@@ -23,7 +27,7 @@ function Home({ cosmic }) {
           cosmic.posts.map(post => {
             const friendly_date = helpers.friendlyDate(new Date(post.created_at))
             post.friendly_date = friendly_date.month + ' ' + friendly_date.date
-            return <PostCard post={post} />
+            return <div key={post.id}><PostCard post={post} /></div>
           })
         }
       </main>
