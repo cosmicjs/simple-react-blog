@@ -4,7 +4,7 @@ export default function PostCard({ post }) {
     {
       post.metadata.hero.imgix_url &&
       <Link href={`/posts/${post.slug}`}>
-        <a className="blog-post-hero blog-post-hero--short" style={{ backgroundImage: `url(${post.metadata.hero.imgix_url})`}}></a>
+        <a className="blog-post-hero blog-post-hero--short" style={{ backgroundImage: `url(${post.metadata.hero.imgix_url}?w=1400&auto=format)`}}></a>
       </Link>
     }
     <div className="card-padding">
@@ -16,7 +16,7 @@ export default function PostCard({ post }) {
       <div className="blog__author">
         <Link href={`/author/${post.metadata.author.slug}`}>
           <a>
-            <div className="blog__author-image" style={{ backgroundImage: `url(${post.metadata.author.metadata.image.imgix_url}?w=100)`}}></div>
+            <div className="blog__author-image" style={{ backgroundImage: `url(${post.metadata.author.metadata.image.imgix_url}?w=100&auto=format)`}}></div>
           </a>
         </Link>
         <div className="blog__author-title">by <a href={`/author/${post.metadata.author.slug}`}>{post.metadata.author.title}</a> on {post.friendly_date}</div>

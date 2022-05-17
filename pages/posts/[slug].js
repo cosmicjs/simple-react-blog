@@ -41,7 +41,7 @@ function Post({ cosmic }) {
       <Header cosmic={ cosmic }/>
       {
         cosmic.post && cosmic.post.metadata.hero.imgix_url &&
-        <div className="blog-post-hero" style={{ backgroundImage: `url(${cosmic.post.metadata.hero.imgix_url})`}}></div>
+        <div className="blog-post-hero" style={{ backgroundImage: `url(${cosmic.post.metadata.hero.imgix_url}?w=2000&auto=format)`}}></div>
       }
       <main className="container">
         <div className="card-padding">
