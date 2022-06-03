@@ -1,10 +1,9 @@
-import axios from 'axios'
 import _ from 'lodash'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import PostCard from '../components/PostCard'
 import helpers from '../helpers'
-import config from '../config'
+import api from '../lib/cosmic'
 import React from 'react';
 import Head from 'next/head'
 
@@ -36,35 +35,27 @@ function Home({ cosmic }) {
   )
 }
 export async function getStaticProps() {
-  const query = `{
-    getObjects(bucket_slug: "${config.bucket.slug}",
-      read_key: "${config.bucket.read_key}"
-    )
-    {
-      objects {
-        id
-        type
-        slug
-        title
-        metadata
-        created_at
-      }
-    }
-  }`
-  return await axios.post(`https://graphql.cosmicjs.com/v3`, { query })
-  .then(function (response) {
+  // Get Objects
+  try {
+    const response = await api.getObjects({
+      query: {
+        type: {
+          $in: ['posts','globals'] // Get posts and globals
+        }
+      },
+      props: ['id','type','slug','title','metadata','created_at'].toString()
+    })
     return {
       props: {
         cosmic: {
-          posts: _.filter(response.data.data.getObjects.objects, { type: 'posts' }),
-          global: _.keyBy(_.filter(response.data.data.getObjects.objects, { type: 'globals' }), 'slug')
+          posts: _.filter(response.objects, { type: 'posts' }),
+          global: _.keyBy(_.filter(response.objects, { type: 'globals' }), 'slug')
         }
       }
     }
-  })
-  .catch(function (error) {
-    return console.log(error)
-  })
+  } catch (error) {
+    console.log('Oof', error)
+  }
 }
 
 export default Home

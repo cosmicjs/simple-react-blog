@@ -1,4 +1,3 @@
-import axios from 'axios'
 import _ from 'lodash'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
@@ -10,6 +9,7 @@ import ErrorPage from 'next/error'
 import { useRouter } from 'next/router'
 import useSWR from 'swr'
 import Head from 'next/head'
+import api from '../../lib/cosmic'
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -77,94 +77,45 @@ function Post({ cosmic }) {
   )
 }
 export async function getStaticProps({ params }) {
-  const globals_query = `{
-    getObjects(
-      bucket_slug: "${config.bucket.slug}",
-      read_key: "${config.bucket.read_key}"
-    ) {
-      objects {
-        id
-        type
-        slug
-        title
-        content
-        metadata
-        created_at
-      }
-    }
-  }`
-  const globals = await axios.post(`https://graphql.cosmicjs.com/v3`, { query: globals_query })
-  .then(function (response) {
-    return _.keyBy(_.filter(response.data.data.getObjects.objects, { type: 'globals' }), 'slug')
-  })
-  .catch(function (error) {
-    console.log(error)
-  })
-  const post_query = `{
-    getObjects(
-      bucket_slug: "${config.bucket.slug}",
-      read_key: "${config.bucket.read_key}"
-      input: {
-        query: {
-          slug: "${params.slug}"
-        }
-      }
-    ) {
-       objects {
-        id
-        type
-        slug
-        title
-        content
-        metadata
-        created_at
-      }
-    }
-  }`
-  let post = await axios.post(`https://graphql.cosmicjs.com/v3`, { query: post_query })
-  .then(function (response) {    
-    return response.data.data.getObjects.objects[0]
-  })
-  .catch(function (error) {
-    console.log(error)
-  })
-  return await Promise.all([globals, post]).then(values => {
+  // Get Objects
+  const props = ['id','type','slug','title','content','metadata','created_at'].toString();
+  try {
+    // Get globals
+    const globals = await api.getObjects({
+      query: {
+        type: 'globals',
+      },
+      props
+    })
+    // Get post
+    const posts = await api.getObjects({
+      query: {
+        type: 'posts',
+        slug: params.slug,
+      },
+      props
+    })
     return {
       props: {
         cosmic: {
-          global: values[0],
-          post: values[1]
+          post: posts.objects[0],
+          global: _.keyBy(globals.objects, 'slug')
         }
       }
     }
-  });
+  } catch (error) {
+    console.log('Oof', error)
+  }
 }
-
+// Get all paths for static page creation
 export async function getAllDataWithSlug() {
- const posts_query = `{
-    getObjects(
-      bucket_slug: "${config.bucket.slug}",
-      read_key: "${config.bucket.read_key}"
-      input: {
-        query: {
-          type: "posts"
-        }
-        props: "slug"
-      }
-    ) {
-       objects {
-        slug
-      }
-    }
-  }`
-  let posts = await axios.post(`https://graphql.cosmicjs.com/v3`, { query: posts_query })
-  .then(function (response) {    
-    return response.data.data.getObjects.objects
+  const response = await api.getObjects({
+    query: {
+      type: 'posts'
+    },
+    props: 'slug'
   })
-  .catch(function (error) {
-    console.log(error)
-  })
-  return posts
+  return response.objects
 }
 
 export async function getStaticPaths() {

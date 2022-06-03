@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
+    "cosmicjs": "^4.1.7",
     "lodash": "^4.17.21",
     "next": "12.1.6",
     "react": "18.1.0",
