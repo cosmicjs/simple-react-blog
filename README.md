@@ -1,5 +1,5 @@
 # Simple React Blog
-![Simple React Blog](https://cosmicjs.com/uploads/76875fe0-af74-11e7-b864-313f959a776e-react-blog-screenshot.png)
+<img width="1274" alt="simple-react-blog" src="https://user-images.githubusercontent.com/1950722/173696384-bbfac078-0221-4693-a819-6f08b5a4d14b.png">
 
 ### [View Demo](https://cosmicjs.com/apps/simple-react-blog/demo)
 
