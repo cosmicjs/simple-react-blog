@@ -99,13 +99,14 @@ combined-stream@^1.0.8:
   dependencies:
     delayed-stream "~1.0.0"
 
-cosmicjs@^4.1.7:
-  version "4.1.7"
-  resolved "https://registry.yarnpkg.com/cosmicjs/-/cosmicjs-4.1.7.tgz#70fc2d819b4131fc384f5289cb677a110b8d05b2"
-  integrity sha512-qbpK3BGM+sHPdkCxZiH+VwFsCONlw4slz3V1kHi4sX7QaGghwY9K8R+aDZXKYypoZrigbwdzsJGHZTIVeS1euA==
+cosmicjs@^4.2.7:
+  version "4.2.7"
+  resolved "https://registry.yarnpkg.com/cosmicjs/-/cosmicjs-4.2.7.tgz#6c0ef3b53a7031779db28646ee245bfa714e1497"
+  integrity sha512-vhWGeH34WUhMBMkHxM66+PUx4ceqBgbTbnbOy4dWpTcTQuGS7KF2APojo/CrdTR31+GMNdjo8QchH4yp4G388g==
   dependencies:
     axios "^0.21.1"
     form-data "^3.0.0"
+    regenerator-runtime "^0.13.9"
     typescript "^4.6.3"
 
 delayed-stream@~1.0.0:
@@ -226,6 +227,11 @@ react@18.1.0:
   integrity sha512-4oL8ivCz5ZEPyclFQXaNksK3adutVS8l2xzZU0cqEFrE9Sb7fC0EFK5uEk74wIreL1DERyjvsU915j1pcT2uEQ==
   dependencies:
     loose-envify "^1.1.0"
+
+regenerator-runtime@^0.13.9:
+  version "0.13.9"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.9.tgz#8925742a98ffd90814988d7566ad30ca3b263b52"
+  integrity sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==
 
 scheduler@^0.22.0:
   version "0.22.0"
