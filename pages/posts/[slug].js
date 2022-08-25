@@ -9,7 +9,7 @@ import ErrorPage from 'next/error'
 import { useRouter } from 'next/router'
 import useSWR from 'swr'
 import Head from 'next/head'
-import api from '../../lib/cosmic'
+import bucket from '../../lib/cosmic'
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -81,20 +81,14 @@ export async function getStaticProps({ params }) {
   const props = ['id','type','slug','title','content','metadata','created_at'].toString();
   try {
     // Get globals
-    const globals = await api.getObjects({
-      query: {
-        type: 'globals',
-      },
-      props
-    })
+    const globals = await bucket.objects.find({
+      type: 'globals',
+    }).props(props)
     // Get post
-    const posts = await api.getObjects({
-      query: {
-        type: 'posts',
-        slug: params.slug,
-      },
-      props
-    })
+    const posts = await bucket.objects.find({
+      type: 'posts',
+      slug: params.slug,
+    }).props(props)
     return {
       props: {
         cosmic: {
@@ -109,12 +103,9 @@ export async function getStaticProps({ params }) {
 }
 // Get all paths for static page creation
 export async function getAllDataWithSlug() {
-  const response = await api.getObjects({
-    query: {
-      type: 'posts'
-    },
-    props: 'slug'
-  })
+  const response = await bucket.objects.find({
+    type: 'posts'
+  }).props('slug')
   return response.objects
 }
 

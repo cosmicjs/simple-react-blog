@@ -3,7 +3,7 @@ import Footer from '../components/Footer'
 import Header from '../components/Header'
 import PostCard from '../components/PostCard'
 import helpers from '../helpers'
-import api from '../lib/cosmic'
+import bucket from '../lib/cosmic'
 import React from 'react';
 import Head from 'next/head'
 
@@ -37,14 +37,11 @@ function Home({ cosmic }) {
 export async function getStaticProps() {
   // Get Objects
   try {
-    const response = await api.getObjects({
-      query: {
-        type: {
-          $in: ['posts','globals'] // Get posts and globals
-        }
-      },
-      props: ['id','type','slug','title','metadata','created_at'].toString()
-    })
+    const response = await bucket.objects.find({
+      type: {
+        $in: ['posts','globals']
+      }
+    }).props('id,type,slug,title,metadata,created_at')
     return {
       props: {
         cosmic: {
