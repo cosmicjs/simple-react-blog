@@ -82,13 +82,15 @@ export async function getStaticProps({ params }) {
   try {
     // Get globals
     const globals = await bucket.objects.find({
-      type: 'globals',
+      type: 'global',
     }).props(props)
+    .depth(1)
     // Get post
     const posts = await bucket.objects.find({
       type: 'posts',
       slug: params.slug,
     }).props(props)
+    .depth(1)
     return {
       props: {
         cosmic: {
