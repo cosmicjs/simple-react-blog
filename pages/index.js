@@ -39,7 +39,7 @@ export async function getStaticProps() {
   try {
     const response = await bucket.objects.find({
       type: {
-        $in: ['posts','global']
+        $in: ['posts','globals']
       }
     }).props('id,type,slug,title,metadata,created_at')
     .depth(1)
@@ -47,7 +47,7 @@ export async function getStaticProps() {
       props: {
         cosmic: {
           posts: _.filter(response.objects, { type: 'posts' }),
-          global: _.keyBy(_.filter(response.objects, { type: 'global' }), 'slug')
+          global: _.keyBy(_.filter(response.objects, { type: 'globals' }), 'slug')
         }
       }
     }

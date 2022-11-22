@@ -43,7 +43,7 @@ export async function getStaticProps({ params }) {
   try {
     // Get globals
     const globals = await bucket.objects.find({
-      type: 'global'
+      type: 'globals'
     }).props(props)
     .depth(1)
     // Get author id

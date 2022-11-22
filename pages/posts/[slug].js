@@ -87,7 +87,7 @@ export async function getStaticProps({ params }) {
     
     // Get globals
     const globals = await bucket.objects.find({
-      type: 'global',
+      type: 'globals',
     })
     .props(props)
 
