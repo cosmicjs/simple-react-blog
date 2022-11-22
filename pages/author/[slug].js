@@ -45,16 +45,19 @@ export async function getStaticProps({ params }) {
     const globals = await bucket.objects.find({
       type: 'globals'
     }).props(props)
+    .depth(1)
     // Get author id
     const authors = await bucket.objects.find({
       type: 'authors',
       slug: params.slug,
     }).props('id,title')
+    .depth(1)
     // Get posts with author id
     const posts = await bucket.objects.find({
       type: 'posts',
       'metadata.author': authors.objects[0].id
     }).props(props)
+    .depth(1)
     return {
       props: {
         cosmic: {

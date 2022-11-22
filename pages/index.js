@@ -42,6 +42,7 @@ export async function getStaticProps() {
         $in: ['posts','globals']
       }
     }).props('id,type,slug,title,metadata,created_at')
+    .depth(1)
     return {
       props: {
         cosmic: {
