@@ -10,6 +10,9 @@ import { useRouter } from 'next/router'
 import useSWR from 'swr'
 import Head from 'next/head'
 import bucket from '../../lib/cosmic'
+// TODO add get revision to NPM module
+const COSMIC_API_URL = 'https://api.cosmicjs.com'
+const COSMIC_API_VERSION = 'v2'
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -24,9 +27,10 @@ function Post({ cosmic }) {
   const router = useRouter()
   const { revision } = router.query
   if(revision) {
-    // Get revision
+    // Get revision // TODO add get revision to NPM module
+    const url = `${COSMIC_API_URL}/${COSMIC_API_VERSION}/buckets/${config.bucket.slug}/objects/${cosmic.post.id}/revisions/${revision}?read_key=${config.bucket.read_key}&props=id,type,slug,title,content,metadata,created_at`
     const { data } = useSWR(
-      `https://api.cosmicjs.com/v2/buckets/${config.bucket.slug}/objects/${cosmic.post.id}/revisions/${revision}?read_key=${config.bucket.read_key}&props=id,type,slug,title,content,metadata,created_at`,
+      url,
       fetcher
     );
     if (data) {
@@ -80,17 +84,21 @@ export async function getStaticProps({ params }) {
   // Get Objects
   const props = ['id','type','slug','title','content','metadata','created_at'].toString();
   try {
+    
     // Get globals
     const globals = await bucket.objects.find({
       type: 'global',
-    }).props(props)
-    .depth(1)
+    })
+    .props(props)
+
     // Get post
     const posts = await bucket.objects.find({
       type: 'posts',
       slug: params.slug,
-    }).props(props)
+    })
+    .props(props)
     .depth(1)
+    
     return {
       props: {
         cosmic: {
