@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
-    "cosmicjs": "git+https://github.com/cosmicjs/cosmicjs-node#next-v5",
+    "cosmicjs": "next",
     "lodash": "^4.17.21",
     "next": "12.1.6",
     "react": "18.1.0",

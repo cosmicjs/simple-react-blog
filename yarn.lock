@@ -101,9 +101,10 @@ combined-stream@^1.0.8:
   dependencies:
     delayed-stream "~1.0.0"
 
-"cosmicjs@git+https://github.com/cosmicjs/cosmicjs-node#next-v5":
-  version "4.3.1"
-  resolved "git+https://github.com/cosmicjs/cosmicjs-node#b9dc534ea9d1d597917f26ef545e848eb6408c25"
+cosmicjs@next:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/cosmicjs/-/cosmicjs-5.0.1.tgz#2f6845a40f454377236455e1ea25ae8406b1561b"
+  integrity sha512-SQDz9OiVrZtjURYU2mQL5ib0MBkBSvKg9JXdOieBX/lJH0I+gRkNTVgMDVlNyaqowqbVDJW4HnU+gySNou7BfQ==
   dependencies:
     axios "^1.2.3"
     form-data "^4.0.0"
