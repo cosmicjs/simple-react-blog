@@ -9,10 +9,10 @@ import ErrorPage from 'next/error'
 import { useRouter } from 'next/router'
 import useSWR from 'swr'
 import Head from 'next/head'
-import bucket from '../../lib/cosmic'
+import cosmic from '../../lib/cosmic'
 // TODO add get revision to NPM module
 const COSMIC_API_URL = 'https://api.cosmicjs.com'
-const COSMIC_API_VERSION = 'v2'
+const COSMIC_API_VERSION = 'v3'
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -86,13 +86,13 @@ export async function getStaticProps({ params }) {
   try {
     
     // Get globals
-    const globals = await bucket.objects.find({
+    const globals = await cosmic.objects.find({
       type: 'globals',
     })
     .props(props)
 
     // Get post
-    const posts = await bucket.objects.find({
+    const posts = await cosmic.objects.find({
       type: 'posts',
       slug: params.slug,
     })
@@ -113,7 +113,7 @@ export async function getStaticProps({ params }) {
 }
 // Get all paths for static page creation
 export async function getAllDataWithSlug() {
-  const response = await bucket.objects.find({
+  const response = await cosmic.objects.find({
     type: 'posts'
   }).props('slug')
   return response.objects

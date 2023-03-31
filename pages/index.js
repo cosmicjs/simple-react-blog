@@ -3,7 +3,7 @@ import Footer from '../components/Footer'
 import Header from '../components/Header'
 import PostCard from '../components/PostCard'
 import helpers from '../helpers'
-import bucket from '../lib/cosmic'
+import cosmic from '../lib/cosmic'
 import React from 'react';
 import Head from 'next/head'
 
@@ -37,7 +37,7 @@ function Home({ cosmic }) {
 export async function getStaticProps() {
   // Get Objects
   try {
-    const response = await bucket.objects.find({
+    const response = await cosmic.objects.find({
       type: {
         $in: ['posts','globals']
       }

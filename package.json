@@ -8,8 +8,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "@cosmicjs/sdk": "^1.0.5",
     "axios": "^0.27.2",
-    "cosmicjs": "next",
     "lodash": "^4.17.21",
     "next": "12.1.6",
     "react": "18.1.0",
