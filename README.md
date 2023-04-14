@@ -1,7 +1,7 @@
 # Simple React Blog
 <img width="1274" alt="simple-react-blog" src="https://user-images.githubusercontent.com/1950722/173696384-bbfac078-0221-4693-a819-6f08b5a4d14b.png">
 
-### [View Demo](https://cosmicjs.com/apps/simple-react-blog/demo)
+### [View Demo](https://cosmic-react-blog.vercel.app)
 
 ### React + Next.js + Cosmic
 This blog uses Next.js to create a React blog.  It connects to the Cosmic API via the [Cosmic JavaScript SDK](https://www.npmjs.com/package/@cosmicjs/sdk).  Manage your content from your Cosmic Bucket Dashboard.  Simple.
