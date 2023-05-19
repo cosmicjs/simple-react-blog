@@ -39,7 +39,7 @@ function AuthorPage({ cosmic }) {
 }
 // Get Global and Posts data
 export async function getStaticProps({ params }) {
-  const props = ['id','type','slug','title','content','metadata','created_at'].toString();
+  const props = ['id','type','slug','title','metadata','created_at'].toString();
   try {
     // Get globals
     const globals = await cosmic.objects.find({

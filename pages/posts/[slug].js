@@ -28,7 +28,7 @@ function Post({ cosmic }) {
   const { revision } = router.query
   if(revision) {
     // Get revision // TODO add get revision to NPM module
-    const url = `${COSMIC_API_URL}/${COSMIC_API_VERSION}/buckets/${config.bucket.slug}/objects/${cosmic.post.id}/revisions/${revision}?read_key=${config.bucket.read_key}&props=id,type,slug,title,content,metadata,created_at`
+    const url = `${COSMIC_API_URL}/${COSMIC_API_VERSION}/buckets/${config.bucket.slug}/objects/${cosmic.post.id}/revisions/${revision}?read_key=${config.bucket.read_key}&props=id,type,slug,title,metadata,created_at`
     const { data } = useSWR(
       url,
       fetcher
@@ -71,7 +71,7 @@ function Post({ cosmic }) {
                 <div className="blog__author-title">by <Link href={`/author/${cosmic.post.metadata.author.slug}`}><a>{cosmic.post.metadata.author.title}</a></Link> on {cosmic.post.friendly_date}</div>
                 <div className="clearfix"></div>
               </div>
-              <div className="blog__teaser droid" dangerouslySetInnerHTML={{__html: cosmic.post.content}}></div>
+              <div className="blog__teaser droid" dangerouslySetInnerHTML={{__html: cosmic.post.metadata.content}}></div>
             </div>
           }
         </div>
@@ -82,7 +82,7 @@ function Post({ cosmic }) {
 }
 export async function getStaticProps({ params }) {
   // Get Objects
-  const props = ['id','type','slug','title','content','metadata','created_at'].toString();
+  const props = ['id','type','slug','title','metadata','created_at'].toString();
   try {
     
     // Get globals
