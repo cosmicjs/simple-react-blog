@@ -5,7 +5,7 @@ import PostCard from '../../components/PostCard'
 import helpers from '../../helpers'
 import React from 'react'
 import Head from 'next/head'
-import bucket from '../../lib/cosmic'
+import cosmic from '../../lib/cosmic'
 
 function AuthorPage({ cosmic }) {
   if (!cosmic)
@@ -39,21 +39,21 @@ function AuthorPage({ cosmic }) {
 }
 // Get Global and Posts data
 export async function getStaticProps({ params }) {
-  const props = ['id','type','slug','title','content','metadata','created_at'].toString();
+  const props = ['id','type','slug','title','metadata','created_at'].toString();
   try {
     // Get globals
-    const globals = await bucket.objects.find({
+    const globals = await cosmic.objects.find({
       type: 'globals'
     }).props(props)
     .depth(1)
     // Get author id
-    const authors = await bucket.objects.find({
+    const authors = await cosmic.objects.find({
       type: 'authors',
       slug: params.slug,
     }).props('id,title')
     .depth(1)
     // Get posts with author id
-    const posts = await bucket.objects.find({
+    const posts = await cosmic.objects.find({
       type: 'posts',
       'metadata.author': authors.objects[0].id
     }).props(props)
@@ -74,7 +74,7 @@ export async function getStaticProps({ params }) {
 
  // Get all paths for static page creation
 export async function getAllDataWithSlug() {
-  const response = await bucket.objects.find({
+  const response = await cosmic.objects.find({
     type: 'authors'
   }).props('slug')
   return response.objects

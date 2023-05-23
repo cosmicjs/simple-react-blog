@@ -1,10 +1,10 @@
 # Simple React Blog
 <img width="1274" alt="simple-react-blog" src="https://user-images.githubusercontent.com/1950722/173696384-bbfac078-0221-4693-a819-6f08b5a4d14b.png">
 
-### [View Demo](https://cosmicjs.com/apps/simple-react-blog/demo)
+### [View Demo](https://cosmic-react-blog.vercel.app)
 
 ### React + Next.js + Cosmic
-This blog uses Next.js to create a React blog.  It connects to the Cosmic API via the [Cosmic NPM module](https://www.npmjs.com/package/cosmicjs).  Manage your content from your Cosmic Bucket Dashboard.  Simple.
+This blog uses Next.js to create a React blog.  It connects to the Cosmic API via the [Cosmic JavaScript SDK](https://www.npmjs.com/package/@cosmicjs/sdk).  Manage your content from your Cosmic Bucket Dashboard.  Simple.
 
 ## Getting Started
 1. Log in to Cosmic and install the [Simple React Blog template](https://www.cosmicjs.com/apps/simple-react-blog).
@@ -51,4 +51,3 @@ http://localhost:3000/posts/[object_slug]?revision=[revision_id]
 ```
 4. For production, replace `http://localhost:3000` with your URL.
 Now when you "Save as Draft" on any Post, you can preview your changes by clicking the "Preview" link.
-<img src="https://cosmic-s3.imgix.net/525f5290-96d5-11e9-86cd-6934fa7afa0f-Screen-Shot-2019-06-24-at-6.10.36-PM.png?w=800" width="300" />
