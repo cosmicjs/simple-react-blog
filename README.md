@@ -7,7 +7,7 @@
 This blog uses Next.js to create a React blog.  It connects to the Cosmic API via the [Cosmic JavaScript SDK](https://www.npmjs.com/package/@cosmicjs/sdk).  Manage your content from your Cosmic Bucket Dashboard.  Simple.
 
 ## Getting Started
-1. Log in to Cosmic and install the [Simple React Blog template](https://www.cosmicjs.com/apps/simple-react-blog).
+1. Log in to Cosmic and install the [Simple React Blog template](https://www.cosmicjs.com/marketplace/templates/simple-react-blog).
 2. Run the following commands to install the code locally.
 ```
 git clone https://github.com/cosmicjs/simple-react-blog
