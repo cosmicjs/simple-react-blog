@@ -43,31 +43,29 @@ export default async (params) => {
       <div className="blog-post-hero" style={{ backgroundImage: `url(${post.metadata.hero.imgix_url}?w=2000&auto=format)`}}></div>
     }
     <main className="container">
-      <div className="card-padding">
-        <h2 className="blog__title">
-          {
-            !post &&
-            <div style={{ textAlign: 'center' }}>Post Not found</div>
-          }
-          {
-            post &&
-            <Link href={`/posts/${post.slug}`}>{post.title}</Link>
-          }
-        </h2>
+      <h2 className="blog__title">
+        {
+          !post &&
+          <div style={{ textAlign: 'center' }}>Post Not found</div>
+        }
         {
           post &&
-          <>
-            <div className="blog__author">
-              <Link href={`/author/${post.metadata.author.slug}`}>
-                <div className="blog__author-image" style={{ backgroundImage: `url(${post.metadata.author.metadata.image.imgix_url}?w=100)`}}></div>
-              </Link>
-              <div className="blog__author-title">by <Link href={`/author/${post.metadata.author.slug}`}>{post.metadata.author.title}</Link> on {helpers.stringToFriendlyDate(post.metadata.published_date)}</div>
-              <div className="clearfix"></div>
-            </div>
-            <div className="blog__teaser droid" dangerouslySetInnerHTML={{__html: post.metadata.content}}></div>
-          </>
+          <Link href={`/posts/${post.slug}`}>{post.title}</Link>
         }
-      </div>
+      </h2>
+      {
+        post &&
+        <>
+          <div className="blog__author">
+            <Link href={`/author/${post.metadata.author.slug}`}>
+              <div className="blog__author-image" style={{ backgroundImage: `url(${post.metadata.author.metadata.image.imgix_url}?w=100)`}}></div>
+            </Link>
+            <div className="blog__author-title">by <Link href={`/author/${post.metadata.author.slug}`}>{post.metadata.author.title}</Link> on {helpers.stringToFriendlyDate(post.metadata.published_date)}</div>
+            <div className="clearfix"></div>
+          </div>
+          <div className="blog__teaser droid" dangerouslySetInnerHTML={{__html: post.metadata.content}}></div>
+        </>
+      }
     </main>
   </>
 }
