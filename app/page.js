@@ -1,5 +1,4 @@
 import PostCard from '../components/PostCard'
-import helpers from '../helpers'
 import cosmic from '../lib/cosmic'
 export default async function Page() {
   // Get posts
@@ -20,8 +19,6 @@ export default async function Page() {
     {
       posts &&
       posts.map(post => {
-        const friendly_date = helpers.friendlyDate(new Date(post.created_at))
-        post.friendly_date = friendly_date.month + ' ' + friendly_date.date
         return <div key={post.id}><PostCard post={post} /></div>
       })
     }

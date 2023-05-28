@@ -1,4 +1,4 @@
-module.exports =  {
+const helpers =  {
   friendlyDate: function(a) {
     var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     var days = ['Sun','Mon','Tues','Wed','Thurs','Fri','Sat'];
@@ -31,5 +31,12 @@ module.exports =  {
     minutes = minutes < 10 ? '0'+minutes : minutes;
     var strTime = hours + ':' + minutes + ampm;
     return strTime;
+  },
+  stringToFriendlyDate: function(date_string) {
+    const date = helpers.friendlyDate(new Date(date_string))
+    const friendly_date = `${date.month} ${date.date}, ${date.year}`
+    return friendly_date;
   }
 }
+
+export default helpers
