@@ -4,7 +4,7 @@
 ### [View Demo](https://cosmic-react-blog.vercel.app)
 
 ### React + Next.js + Cosmic
-This blog uses Next.js to create a React blog.  It connects to the Cosmic API via the [Cosmic JavaScript SDK](https://www.npmjs.com/package/@cosmicjs/sdk).  Manage your content from your Cosmic Bucket Dashboard.  Simple.
+This blog uses Next.js to create a React blog.  It uses Next.js 13 and the new `app` organization structure which takes advantage of [React Server Components](https://nextjs.org/docs/getting-started/react-essentials#server-components). It connects to the Cosmic API via the [Cosmic JavaScript SDK](https://www.npmjs.com/package/@cosmicjs/sdk).
 
 ## Getting Started
 1. Log in to Cosmic and install the [Simple React Blog template](https://www.cosmicjs.com/marketplace/templates/simple-react-blog).
@@ -39,15 +39,3 @@ Open [http://localhost:3000](http://localhost:3000).
 <p>
 <a href="https://vercel.com/import/git?c=1&s=https://github.com/cosmicjs/simple-react-blog&env=NEXT_PUBLIC_COSMIC_BUCKET_SLUG,NEXT_PUBLIC_COSMIC_READ_KEY" rel="noopener noreferrer" target="_blank"><img src="https://cdn.cosmicjs.com/d3f0d5e0-c064-11ea-9a05-6f8a16b0b14c-deploy-to-vercel.svg" style="width: 100px;" class="fr-fic fr-dib fr-fil"></a>
 </p>
-
-
-## Revision Preview
-Follow these steps to add revision preview to your Bucket:
-1. [Log in to Cosmic](https://www.cosmicjs.com).
-2. Go to <em>Your Bucket > Posts > Object Type Settings</em>.
-3. Scroll down to the Preview Link section and add the following link:
-```
-http://localhost:3000/posts/[object_slug]?revision=[revision_id]
-```
-4. For production, replace `http://localhost:3000` with your URL.
-Now when you "Save as Draft" on any Post, you can preview your changes by clicking the "Preview" link.
