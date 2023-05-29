@@ -18,7 +18,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async (params) => {
+export default async ({ params }) => {
   const slug = params.slug
   let author;
   let posts;
