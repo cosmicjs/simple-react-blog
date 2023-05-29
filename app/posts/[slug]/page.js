@@ -3,7 +3,7 @@ import cosmic from '../../../lib/cosmic'
 import helpers from '../../../helpers'
 
 export async function generateMetadata({ params }) {
-  const slug = params.slug[0]
+  const slug = params.slug
   let post;
   try {
     // Get post
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async (params) => {
-  const slug = params.params.slug[0]
+  const slug = params.slug
   let post;
   try {
     // Get post

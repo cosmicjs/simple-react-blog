@@ -2,7 +2,7 @@ import cosmic from '../../../lib/cosmic'
 import PostCard from '../../../components/PostCard'
 
 export async function generateMetadata({ params }) {
-  const slug = params.slug[0]
+  const slug = params.slug
   let author;
   try {
     author = (await cosmic.objects.findOne({
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async (params) => {
-  const slug = params.params.slug[0]
+  const slug = params.slug
   let author;
   let posts;
   try {
