@@ -1,5 +1,5 @@
 # Simple React Blog
-![simple-nextjs-blog](https://github.com/cosmicjs/simple-nextjs-blog/assets/1950722/0260dc48-05aa-4a84-98fa-6e6ff2671317)
+![simple-nextjs-blog](https://github.com/cosmicjs/simple-react-blog/assets/1950722/39a1604a-81a3-4d7d-8276-7650ca626ae1)
 
 ## NOTE: this repo is now a mirror of the [Simple Next.js Blog](https://github.com/cosmicjs/simple-nextjs-blog)
 
