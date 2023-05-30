@@ -21,7 +21,7 @@ cd simple-react-blog
 ```
 cp .env.example .env.local
 ```
-2. Find your API access keys at <em>Bucket Settings &gt; API Access</em> and add them to the `.env.local` file. It should look something like this:
+2. Find your API access keys at <em>Bucket Settings &gt; API Access</em> after logging into [your Cosmic dashboard](https://app.cosmicjs.com/login) and add them to the `.env.local` file. It should look something like this:
 ```
 NEXT_PUBLIC_COSMIC_BUCKET_SLUG=your-bucket-slug
 NEXT_PUBLIC_COSMIC_READ_KEY=your-bucket-read-key
