@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h2 {
+    @apply text-zinc-700 dark:text-zinc-300 text-3xl font-bold mt-2 mb-4 leading-tight tracking-tight;
+  }
+
+  h3 {
+    @apply text-zinc-700 dark:text-zinc-300 text-xl font-semibold mt-2 mb-4 leading-snug tracking-tight;
+  }
+
+  p {
+    @apply text-zinc-600 dark:text-zinc-400 pb-4 last-of-type:pb-0 leading-relaxed tracking-normal;
+  }
+}
