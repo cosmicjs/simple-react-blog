@@ -1,7 +1,8 @@
-# Simple React Blog
-<img width="1274" alt="simple-react-blog" src="https://user-images.githubusercontent.com/1950722/173696384-bbfac078-0221-4693-a819-6f08b5a4d14b.png">
+# Simple Next.js Blog
+<img width="1378" alt="Screenshot - Arc - Our Blue Marble - 001145" src="https://github.com/cosmicjs/simple-nextjs-blog/assets/26257029/ca455892-8ab8-44a3-9593-725e822fa3d7">
 
-### [View Demo](https://cosmic-react-blog.vercel.app)
+
+### [View Demo](https://cosmic-next-blog.vercel.app)
 
 ### React + Next.js + Cosmic
 This blog uses Next.js to create a React blog.  It uses Next.js 13 and the new `app` organization structure which takes advantage of [React Server Components](https://nextjs.org/docs/getting-started/react-essentials#server-components). It connects to the Cosmic API via the [Cosmic JavaScript SDK](https://www.npmjs.com/package/@cosmicjs/sdk).
