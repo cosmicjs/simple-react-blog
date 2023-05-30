@@ -3,7 +3,7 @@
 
 
 
-### [View Demo](https://cosmic-next-blog.vercel.app)
+### [View Demo](https://cosmic-nextjs-blog.vercel.app/)
 
 ### React + Next.js + Cosmic
 This blog uses Next.js to create a React blog.  It uses Next.js 13 and the new `app` organization structure which takes advantage of [React Server Components](https://nextjs.org/docs/getting-started/react-essentials#server-components). It connects to the Cosmic API via the [Cosmic JavaScript SDK](https://www.npmjs.com/package/@cosmicjs/sdk).
