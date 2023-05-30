@@ -15,7 +15,7 @@ export async function generateMetadata() {
   const siteData = await getGlobalData();
   return {
     title: siteData.metadata.site_title,
-    description: siteData.metadata.description,
+    description: siteData.metadata.site_tag,
   };
 }
 
