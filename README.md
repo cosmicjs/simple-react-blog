@@ -1,5 +1,5 @@
 # Simple React Blog
-<img width="1274" alt="simple-react-blog" src="https://user-images.githubusercontent.com/1950722/173696384-bbfac078-0221-4693-a819-6f08b5a4d14b.png">
+<img width="891" alt="Screenshot - Arc - Our Blue Marble - 001147" src="https://github.com/cosmicjs/simple-nextjs-blog/assets/26257029/88043048-c17b-458a-8669-8e878aaf18a2">
 
 ### [View Demo](https://cosmic-react-blog.vercel.app)
 
