@@ -1,72 +1,27 @@
+import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import ArrowLeft from '../../../components/ArrowLeft';
-import cosmic from '../../../lib/cosmic';
+import { getPost } from '../../../lib/cosmic';
+import { getRelatedPosts } from '../../../lib/cosmic';
 import helpers from '../../../helpers';
 import SuggestedPostCard from '../../../components/SuggestedPostCard';
 
 export async function generateMetadata({ params }) {
-  try {
-    // Get post
-    const data = await cosmic.objects
-      .findOne({
-        type: 'posts',
-        slug: params.slug,
-      })
-      .props(['id', 'type', 'slug', 'title', 'metadata', 'created_at'])
-      .depth(1);
-    const post = await data.object;
-    return post;
-  } catch (error) {
-    console.log('Oof', error);
-  }
+  const post = await getPost({ params });
   return {
-    title: `${post.title} | Simple React Blog`,
+    title: `${post.title} | Simple Next 13 Blog`,
   };
 }
 
-async function getRelatedPosts({ params }) {
-  try {
-    // Get suggested posts
-    const data = await cosmic.objects
-      .find({
-        type: 'posts',
-        slug: {
-          $ne: params?.slug,
-        },
-      })
-      .props(['id', 'type', 'slug', 'title', 'metadata', 'created_at'])
-      .sort('random')
-      .depth(1);
-    const suggestedPosts = await data.objects;
-    return suggestedPosts;
-  } catch (error) {
-    console.log('Oof', error);
-  }
-}
-
 export default async ({ params }) => {
-  let post;
-  try {
-    // Get post
-    post = await cosmic.objects
-      .findOne({
-        type: 'posts',
-        slug: params.slug,
-      })
-      .props(['id', 'type', 'slug', 'title', 'metadata', 'created_at'])
-      .depth(1);
-    post = await post.object;
-  } catch (error) {
-    console.log('Oof', error);
-  }
-
+  const post = await getPost({ params });
   const suggestedPosts = await getRelatedPosts({ params });
 
   return (
     <>
-      {post && post.metadata.hero.imgix_url && (
-        <Image className='mb-5 h-auto w-full bg-no-repeat object-cover object-center' src={`${post.metadata.hero.imgix_url}?w=1400&auto=format`} width={2000} height={640} priority alt={post.title} />
+      {post && post.metadata.hero?.imgix_url && (
+        <Image className='mb-5 h-auto w-full bg-no-repeat object-cover object-center' src={`${post.metadata.hero?.imgix_url}?w=1400&auto=format`} width={2000} height={640} priority alt={post.title} />
       )}
       <main className='flex flex-col'>
         <div className='flex w-full flex-col items-start justify-start px-4 md:flex-row'>
@@ -84,13 +39,13 @@ export default async ({ params }) => {
               <>
                 <div className='flex space-x-1 pb-8'>
                   <span className='text-zinc-600 dark:text-zinc-400'>by</span>
-                  <a href={`/author/${post.metadata.author.slug}`} className='font-semibold text-green-600 dark:text-green-200'>
-                    {post.metadata.author.title}
+                  <a href={`/author/${post.metadata.author?.slug}`} className='font-semibold text-green-600 dark:text-green-200'>
+                    {post.metadata.author?.title}
                   </a>
                   <span className='text-zinc-600 dark:text-zinc-400'>on {helpers.stringToFriendlyDate(post.metadata.published_date)}</span>
                 </div>
                 <hr className='w-full border-t border-zinc-300 pb-8 dark:border-zinc-700' />
-                <div dangerouslySetInnerHTML={{ __html: post.metadata.content }}></div>
+                <div dangerouslySetInnerHTML={{ __html: post.metadata.content ?? '' }}></div>
               </>
             )}
           </div>

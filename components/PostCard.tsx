@@ -4,41 +4,16 @@ import Image from 'next/image';
 import helpers from '../helpers';
 import ArrowRight from './ArrowRight';
 import Tag from './Tag';
+import { Post } from '../lib/types';
 
-interface PostCardProps {
-  post: {
-    slug: string;
-    title: string;
-    metadata: {
-      published_date: string;
-      hero: {
-        imgix_url: string;
-      };
-      author: {
-        slug: string;
-        title: string;
-        metadata: {
-          image: {
-            imgix_url: string;
-          };
-        };
-      };
-      teaser?: string | null | undefined;
-      categories: {
-        title: string;
-      }[];
-    };
-  };
-}
-
-export default function PostCard({ post }: PostCardProps) {
+export default function PostCard({ post }: { post: Post }) {
   return (
     <div>
-      {post.metadata.hero.imgix_url && (
+      {post.metadata.hero?.imgix_url && (
         <Link href={`/posts/${post.slug}`}>
           <Image
             className='mb-5 h-auto w-full rounded-xl bg-no-repeat object-cover object-center transition-transform duration-200 ease-out hover:scale-[1.02]'
-            src={`${post.metadata.hero.imgix_url}?w=1400&h=340&auto=format`}
+            src={`${post.metadata.hero?.imgix_url}?w=1400&h=340&auto=format`}
             width={1400}
             height={340}
             priority
@@ -50,14 +25,14 @@ export default function PostCard({ post }: PostCardProps) {
         <Link href={`/posts/${post.slug}`}>{post.title}</Link>
       </h2>
       <div className='flex items-center space-x-2 text-zinc-500 dark:text-zinc-400'>
-        <Link href={`/author/${post.metadata.author.slug}`}>
-          <Image className='h-8 w-8 rounded-full' src={`${post.metadata.author.metadata.image.imgix_url}?w=100&auto=format`} width={32} height={32} alt={post.title}></Image>
+        <Link href={`/author/${post.metadata.author?.slug}`}>
+          <Image className='h-8 w-8 rounded-full' src={`${post.metadata.author?.metadata.image?.imgix_url}?w=100&auto=format`} width={32} height={32} alt={post.title}></Image>
         </Link>
         <div>
           <span>
             by{' '}
-            <a href={`/author/${post.metadata.author.slug}`} className='font-semibold text-green-600 dark:text-green-200'>
-              {post.metadata.author.title}
+            <a href={`/author/${post.metadata.author?.slug}`} className='font-semibold text-green-600 dark:text-green-200'>
+              {post.metadata.author?.title}
             </a>{' '}
             on {helpers.stringToFriendlyDate(post.metadata.published_date)}
           </span>
