@@ -38,11 +38,20 @@ export default async ({ params }: { params: { slug: string } }) => {
             {post && (
               <>
                 <div className='flex space-x-1 pb-8'>
-                  <span className='text-zinc-600 dark:text-zinc-400'>by</span>
-                  <a href={`/author/${post.metadata.author?.slug}`} className='font-semibold text-green-600 dark:text-green-200'>
-                    {post.metadata.author?.title}
-                  </a>
-                  <span className='text-zinc-600 dark:text-zinc-400'>on {helpers.stringToFriendlyDate(post.metadata.published_date)}</span>
+                  <div className='flex items-center space-x-2 text-zinc-500 dark:text-zinc-400'>
+                    <Link href={`/author/${post.metadata.author?.slug}`}>
+                      <Image className='h-8 w-8 rounded-full' src={`${post.metadata.author?.metadata.image?.imgix_url}?w=100&auto=format`} width={32} height={32} alt={post.title}></Image>
+                    </Link>
+                    <div>
+                      <span>
+                        by{' '}
+                        <a href={`/author/${post.metadata.author?.slug}`} className='font-semibold text-green-600 dark:text-green-200'>
+                          {post.metadata.author?.title}
+                        </a>{' '}
+                        on {helpers.stringToFriendlyDate(post.metadata.published_date)}
+                      </span>
+                    </div>
+                  </div>
                 </div>
                 <hr className='w-full border-t border-zinc-300 pb-8 dark:border-zinc-700' />
                 <div dangerouslySetInnerHTML={{ __html: post.metadata.content ?? '' }}></div>
