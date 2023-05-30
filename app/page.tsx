@@ -1,8 +1,6 @@
 import React from 'react';
 import PostCard from '../components/PostCard';
 import { getAllPosts } from '../lib/cosmic';
-// import cosmic from '../lib/cosmic';
-// import { Post } from '../lib/types';
 
 export default async function Page(): Promise<JSX.Element> {
   const posts = await getAllPosts();
