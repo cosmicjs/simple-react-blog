@@ -1,7 +1,7 @@
 export default function Tag({ children }) {
   return (
-    <div className='flex bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 justify-center px-2 py-1 rounded-full text-cyan-600 dark:text-cyan-300 text-xs md:text-sm lg:text-base'>
-      {children}
+    <div className='flex rounded-full border border-zinc-200 bg-zinc-50 px-3 py-2 dark:border-zinc-700 dark:bg-zinc-900'>
+      <span className='pt-[3px] text-xs uppercase leading-none text-cyan-600 dark:text-cyan-300'>{children}</span>
     </div>
   );
 }

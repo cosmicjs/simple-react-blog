@@ -1,11 +1,13 @@
 import Link from 'next/link';
 import cosmic from '../lib/cosmic';
 import CosmicLogo from '../components/CosmicLogo';
+import Banner from '../components/Banner';
+import SiteLogo from '../components/SiteLogo';
 import '../styles/globals.css';
-import Instrument_Sans from 'next/font/local';
+import Generator from 'next/font/local';
 
-const sans = Instrument_Sans({
-  src: '../fonts/InstrumentSans-VariableFont_wdth,wght.ttf',
+const sans = Generator({
+  src: '../fonts/Generator-Variable.ttf',
   variable: '--font-sans',
 });
 
@@ -49,35 +51,20 @@ export default async function RootLayout({ children }) {
   }
   return (
     <html lang='en' className={`${sans.variable} font-sans`}>
-      <head>
-        <link rel='stylesheet' type='text/css' href='/static/style.css' key='cssfile' />
-        <link href='https://fonts.googleapis.com/css2?family=Instrument+Sans&display=swap' rel='stylesheet' key='fontfile' />
-      </head>
       <body className='bg-white dark:bg-zinc-950'>
-        <div className='bg-zinc-100 dark:bg-zinc-900 flex justify-center p-2 space-x-1 text-xs md:text-sm lg:text-base'>
-          <span className='text-zinc-800 dark:text-zinc-200'>The source code for this blog is</span>
-          <a href='https://github.com/cosmicjs/simple-react-blog' target='_parent' className='underline text-green-500 dark:text-green-300'>
-            available on GitHub
-          </a>
-          .
-        </div>
-        <header className='px-4 lg:px-0 w-full max-w-3xl mx-auto my-8' key='headerelement'>
-          <h1 className='flex flex-col space-y-2 md:space-y-0 md:flex-row justify-between items-baseline'>
-            <Link href='/' className='text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-700 to-teal-600 dark:from-cyan-300 dark:to-teal-200'>{siteData.metadata.site_title}</Link>
-            <span className='text-lg text-zinc-500 dark:text-zinc-200'>{siteData.metadata.site_tag}</span>
-          </h1>
+        <Banner />
+        <header className='sticky top-0 z-10 mx-auto bg-zinc-50/75 backdrop-blur-lg dark:bg-zinc-950/75' key='headerelement'>
+          <SiteLogo siteData={siteData} />
         </header>
         {children}
-        <div className='flex w-full max-w-3xl mx-auto justify-between items-center px-4 lg:px-0 py-4 text-xs md:text-sm lg:text-base mt-8'>
-            <a href='https://www.cosmicjs.com' target='_blank' className='no-underline'>
-              <div className="flex space-x-2 items-center">
+        <div className='mx-auto mt-8 flex w-full max-w-3xl items-center justify-between px-4 py-4 text-xs md:text-sm lg:px-0 lg:text-base'>
+          <a href='https://www.cosmicjs.com' target='_blank' className='no-underline'>
+            <div className='flex items-center space-x-2'>
               <CosmicLogo />
-              <span className='text-zinc-700'>
-                Proudly powered by Cosmic
-              </span>
-              </div>
-            </a>
-          <div className='text-zinc-700'>&copy;&nbsp;&nbsp;{new Date().getFullYear()} Cosmic</div>
+              <span className='text-zinc-700 dark:text-zinc-300'>Proudly powered by Cosmic</span>
+            </div>
+          </a>
+          <div className='text-zinc-700 dark:text-zinc-300'>&copy;&nbsp;&nbsp;{new Date().getFullYear()} Cosmic</div>
         </div>
       </body>
     </html>
