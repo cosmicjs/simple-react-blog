@@ -20,7 +20,7 @@ export async function getGlobalData(): Promise<GlobalData> {
           type: 'globals',
           slug: 'header',
         })
-        .props('type,slug,title,metadata.site_title,metadata.description,metadata.site_tag,created_at')
+        .props('metadata.site_title,metadata.site_tag')
         .depth(1)
     );
     const siteData: GlobalData = data.object;
