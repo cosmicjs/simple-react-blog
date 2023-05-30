@@ -5,6 +5,8 @@ import helpers from '../helpers';
 import ArrowRight from './ArrowRight';
 import Tag from './Tag';
 import { Post } from '../lib/types';
+import AuthorAttribution from './AuthorAttribution';
+import AuthorAvatar from './AuthorAvatar';
 
 export default function PostCard({ post }: { post: Post }) {
   return (
@@ -24,18 +26,13 @@ export default function PostCard({ post }: { post: Post }) {
       <h2 className='pb-3 text-xl font-semibold text-zinc-800 dark:text-zinc-200'>
         <Link href={`/posts/${post.slug}`}>{post.title}</Link>
       </h2>
-      <div className='flex items-center space-x-2 text-zinc-500 dark:text-zinc-400'>
-        <Link href={`/author/${post.metadata.author?.slug}`}>
-          <Image className='h-8 w-8 rounded-full' src={`${post.metadata.author?.metadata.image?.imgix_url}?w=100&auto=format`} width={32} height={32} alt={post.title}></Image>
-        </Link>
-        <div>
-          <span>
-            by{' '}
-            <a href={`/author/${post.metadata.author?.slug}`} className='font-semibold text-green-600 dark:text-green-200'>
-              {post.metadata.author?.title}
-            </a>{' '}
-            on {helpers.stringToFriendlyDate(post.metadata.published_date)}
-          </span>
+      <div className='flex flex-col justify-between space-y-4 md:flex-row md:space-y-0'>
+        <div className='flex items-center space-x-2 text-zinc-500 dark:text-zinc-400 md:space-y-0'>
+          <AuthorAvatar post={post} />
+          <AuthorAttribution post={post} />
+        </div>
+        <div className='flex select-none justify-start space-x-2 font-bold md:hidden md:justify-end'>
+          {post.metadata.categories && post.metadata.categories.map((category) => <Tag key={category.title}>{category.title}</Tag>)}
         </div>
       </div>
       <div className='py-6 text-zinc-500 dark:text-zinc-300' dangerouslySetInnerHTML={{ __html: post.metadata.teaser ?? '' }} />
@@ -46,7 +43,9 @@ export default function PostCard({ post }: { post: Post }) {
             <ArrowRight className='h-4 w-4 text-inherit' />
           </div>
         </Link>
-        <div className='flex select-none justify-end space-x-2'>{post.metadata.categories && post.metadata.categories.map((category) => <Tag key={category.title}>{category.title}</Tag>)}</div>
+        <div className='hidden select-none justify-end space-x-2 md:flex '>
+          {post.metadata.categories && post.metadata.categories.map((category) => <Tag key={category.title}>{category.title}</Tag>)}
+        </div>
       </div>
     </div>
   );
