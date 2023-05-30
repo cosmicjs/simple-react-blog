@@ -1,7 +1,7 @@
 # Simple React Blog
 ![simple-nextjs-blog](https://github.com/cosmicjs/simple-nextjs-blog/assets/1950722/0260dc48-05aa-4a84-98fa-6e6ff2671317)
 
-## NOTE: this repo is now a mirror of the [Simple Next.js Blog](https://github.com/cosmicjs/simple-react-blog)
+## NOTE: this repo is now a mirror of the [Simple Next.js Blog](https://github.com/cosmicjs/simple-nextjs-blog)
 
 
 ### [View Demo](https://cosmic-nextjs-blog.vercel.app/)
