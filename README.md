@@ -1,5 +1,6 @@
 # Simple Next.js Blog
-<img width="1378" alt="Screenshot - Arc - Our Blue Marble - 001145" src="https://github.com/cosmicjs/simple-nextjs-blog/assets/26257029/ca455892-8ab8-44a3-9593-725e822fa3d7">
+<img width="891" alt="Screenshot - Arc - Our Blue Marble - 001147" src="https://github.com/cosmicjs/simple-nextjs-blog/assets/26257029/88043048-c17b-458a-8669-8e878aaf18a2">
+
 
 
 ### [View Demo](https://cosmic-next-blog.vercel.app)
@@ -8,10 +9,10 @@
 This blog uses Next.js to create a React blog.  It uses Next.js 13 and the new `app` organization structure which takes advantage of [React Server Components](https://nextjs.org/docs/getting-started/react-essentials#server-components). It connects to the Cosmic API via the [Cosmic JavaScript SDK](https://www.npmjs.com/package/@cosmicjs/sdk).
 
 ## Getting Started
-1. Log in to Cosmic and install the [Simple React Blog template](https://www.cosmicjs.com/marketplace/templates/simple-react-blog).
+1. Log in to Cosmic and install the [Simple Next.js Blog template](https://www.cosmicjs.com/marketplace/templates/simple-nextjs-blog).
 2. Run the following commands to install the code locally.
 ```
-git clone https://github.com/cosmicjs/simple-react-blog
+git clone https://github.com/cosmicjs/simple-nextjs-blog
 cd simple-react-blog
 ```
 #### Environment Variables
