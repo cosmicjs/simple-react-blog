@@ -2,14 +2,14 @@ import React from 'react';
 import PostCard from '../../../components/PostCard';
 import { getAuthor, getAuthorPosts } from '../../../lib/cosmic';
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
+export async function generateMetadata({ params }: { params: { id: string; slug: string } }) {
   const author = await getAuthor({ params });
   return {
     title: `${author.title} posts | Simple React Blog`,
   };
 }
 
-export default async ({ params }: { params: { id: string } }) => {
+export default async ({ params }: { params: { id: string; slug: string } }) => {
   const author = await getAuthor({ params });
   const posts = await getAuthorPosts({ authorId: author.id });
 

@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import OBMLogo from './OBMLogo';
+import { GlobalData } from '../lib/types';
 
-export default function SiteLogo({ siteData }) {
+export default function SiteLogo({ siteData }: { siteData: GlobalData }): JSX.Element {
   return (
     <div className='mx-auto flex w-full max-w-3xl flex-col items-baseline justify-between px-4 py-4 tracking-tighter md:flex-row lg:px-0'>
       <h1 className='flex space-x-2'>

@@ -7,14 +7,14 @@ import { getRelatedPosts } from '../../../lib/cosmic';
 import helpers from '../../../helpers';
 import SuggestedPostCard from '../../../components/SuggestedPostCard';
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ params }: { params: { slug: string } }) {
   const post = await getPost({ params });
   return {
     title: `${post.title} | Simple Next 13 Blog`,
   };
 }
 
-export default async ({ params }) => {
+export default async ({ params }: { params: { slug: string } }) => {
   const post = await getPost({ params });
   const suggestedPosts = await getRelatedPosts({ params });
 

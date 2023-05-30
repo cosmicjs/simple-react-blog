@@ -28,7 +28,7 @@ export async function getGlobalData(): Promise<GlobalData> {
   } catch (error) {
     console.log('Oof', error);
   }
-  return Promise.resolve({ metadata: { site_title: '', description: '' } });
+  return Promise.resolve({} as GlobalData);
 }
 
 export async function getAllPosts(): Promise<Post[]> {
@@ -93,7 +93,7 @@ export async function getRelatedPosts({ params }: { params: { slug: string } }):
   return Promise.resolve([]);
 }
 
-export async function getAuthor({ params }): Promise<Author> {
+export async function getAuthor({ params }: { params: { id: string; slug: string } }): Promise<Author> {
   try {
     const data: any = await Promise.resolve(
       cosmic.objects

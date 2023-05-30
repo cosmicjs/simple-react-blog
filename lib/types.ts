@@ -1,6 +1,7 @@
 export interface GlobalData {
   metadata: {
     site_title: string;
+    site_tag: string;
     description: string;
   };
 }
