@@ -66,7 +66,7 @@ export default async ({ params }) => {
   return (
     <>
       {post && post.metadata.hero.imgix_url && (
-        <Image className='mb-5 h-[640px] w-full bg-no-repeat object-cover object-center' src={`${post.metadata.hero.imgix_url}?w=1400&auto=format`} width={2000} height={640} />
+        <Image className='mb-5 h-auto w-full bg-no-repeat object-cover object-center' src={`${post.metadata.hero.imgix_url}?w=1400&auto=format`} width={2000} height={640} priority alt={post.title} />
       )}
       <main className='flex flex-col'>
         <div className='flex w-full flex-col items-start justify-start px-4 md:flex-row'>

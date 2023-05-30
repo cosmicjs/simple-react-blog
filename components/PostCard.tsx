@@ -37,10 +37,11 @@ export default function PostCard({ post }: PostCardProps) {
       {post.metadata.hero.imgix_url && (
         <Link href={`/posts/${post.slug}`}>
           <Image
-            className='mb-5 h-[340px] w-full rounded-xl bg-no-repeat object-cover object-center transition-transform duration-200 ease-out hover:scale-[1.02]'
-            src={`${post.metadata.hero.imgix_url}?w=1400&auto=format`}
+            className='mb-5 h-auto w-full rounded-xl bg-no-repeat object-cover object-center transition-transform duration-200 ease-out hover:scale-[1.02]'
+            src={`${post.metadata.hero.imgix_url}?w=1400&h=340&auto=format`}
             width={1400}
             height={340}
+            priority
             alt={post.title}
           />
         </Link>
