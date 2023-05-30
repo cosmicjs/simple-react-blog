@@ -1,5 +1,5 @@
 # Simple Next.js Blog
-<img width="891" alt="Screenshot - Arc - Our Blue Marble - 001147" src="https://github.com/cosmicjs/simple-nextjs-blog/assets/26257029/88043048-c17b-458a-8669-8e878aaf18a2">
+![simple-nextjs-blog](https://github.com/cosmicjs/simple-nextjs-blog/assets/1950722/0260dc48-05aa-4a84-98fa-6e6ff2671317)
 
 
 
